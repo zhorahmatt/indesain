@@ -53,6 +53,32 @@ const business = {
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <!--
+      Language detection. Only Indonesian (default) pages redirect, so an /en/ link always stays English.
+      A saved choice (from the switcher) wins; otherwise the browser's first language decides once and is saved.
+      Indonesian and regional languages stay on Indonesian; anything else goes to English. Crawlers are never redirected.
+    -->
+    <script is:inline>
+      (function () {
+        var KEY = 'indesain-lang';
+        var path = location.pathname;
+        if (path === '/en' || path.indexOf('/en/') === 0) return;
+        if (navigator.webdriver || /bot|crawl|spider|slurp|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var pref = null;
+        try {
+          pref = localStorage.getItem(KEY);
+        } catch (e) {}
+        if (!pref) {
+          var first = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase().split('-')[0];
+          var local = ['id', 'jv', 'su', 'ms', 'ban', 'bug', 'mak', 'min'];
+          pref = !first || local.indexOf(first) > -1 ? 'id' : 'en';
+          try {
+            localStorage.setItem(KEY, pref);
+          } catch (e) {}
+        }
+        if (pref === 'en') location.replace('/en' + path + location.search + location.hash);
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -79,6 +105,15 @@ const business = {
     <script>
       import { initMotion } from '../scripts/motion';
       initMotion();
+
+      // Remember a language picked from the switcher so detection never overrides it.
+      document.querySelectorAll<HTMLAnchorElement>('[data-set-lang]').forEach((link) =>
+        link.addEventListener('click', () => {
+          try {
+            localStorage.setItem('indesain-lang', link.dataset.setLang ?? '');
+          } catch {}
+        }),
+      );
     </script>
   </body>
 </html>

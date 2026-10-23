@@ -13,7 +13,6 @@ const items = navPaths.map((href) => ({
 }));
 const switcher = langs.map((code) => ({
   code,
-  label: code.toUpperCase(),
   href: localizePath(path, code),
   name: useTranslations(code).langName,
 }));
@@ -30,23 +29,6 @@ const switcher = langs.map((code) => ({
           <li>
             <a href={item.href} class="link-underline" aria-current={path.startsWith(item.path) ? 'page' : undefined}>
               {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <ul class="lang small" aria-label={t.menu.language}>
-      {
-        switcher.map((option) => (
-          <li>
-            <a
-              href={option.href}
-              hreflang={option.code}
-              lang={option.code}
-              title={option.name}
-              aria-current={option.code === lang ? 'true' : undefined}
-            >
-              {option.label}
             </a>
           </li>
         ))
@@ -71,10 +53,16 @@ const switcher = langs.map((code) => ({
   </ul>
   <div class="mobile-foot small">
     <p class="mute">{site.email}</p>
-    <p class="mobile-lang">
+    <p class="mobile-lang" aria-label={t.menu.language}>
       {
         switcher.map((option) => (
-          <a href={option.href} hreflang={option.code} aria-current={option.code === lang ? 'true' : undefined}>
+          <a
+            href={option.href}
+            hreflang={option.code}
+            lang={option.code}
+            data-set-lang={option.code}
+            aria-current={option.code === lang ? 'true' : undefined}
+          >
             {option.name}
           </a>
         ))
@@ -109,7 +97,6 @@ const switcher = langs.map((code) => ({
   nav {
     display: flex;
     align-items: center;
-    gap: 28px;
   }
 
   .links {
@@ -119,27 +106,6 @@ const switcher = langs.map((code) => ({
 
   [aria-current='page'] {
     background-size: 100% 1px;
-  }
-
-  .lang {
-    display: flex;
-    gap: 2px;
-  }
-
-  .lang li + li::before {
-    content: '/';
-    margin-right: 2px;
-    opacity: 0.5;
-  }
-
-  .lang a {
-    opacity: 0.5;
-    transition: opacity 0.3s;
-  }
-
-  .lang a:hover,
-  .lang [aria-current='true'] {
-    opacity: 1;
   }
 
   .menu-toggle {

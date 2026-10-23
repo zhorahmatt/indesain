@@ -1,11 +1,13 @@
 ---
 import { navPaths, site } from '../data/site';
-import { getLang, localizePath, useTranslations } from '../i18n/utils';
+import { getLang, langs, localizePath, unlocalizePath, useTranslations } from '../i18n/utils';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 
 const year = new Date().getFullYear();
+const path = unlocalizePath(Astro.url.pathname);
+const switcher = langs.map((code) => ({ code, href: localizePath(path, code), name: useTranslations(code).langName }));
 const columns = [
   {
     title: t.footer.pages,
@@ -55,6 +57,21 @@ const columns = [
 
     <div class="colophon wrap small mute">
       <p>© {year} {site.name}</p>
+      <p class="lang-switch" aria-label={t.menu.language}>
+        {
+          switcher.map((option) => (
+            <a
+              href={option.href}
+              hreflang={option.code}
+              lang={option.code}
+              data-set-lang={option.code}
+              aria-current={option.code === lang ? 'true' : undefined}
+            >
+              {option.name}
+            </a>
+          ))
+        }
+      </p>
       <p>{site.city} · {site.coordinates}</p>
     </div>
   </div>
@@ -110,6 +127,20 @@ const columns = [
     display: flex;
     justify-content: space-between;
     padding-block: 64px 24px;
+  }
+
+  .lang-switch {
+    display: flex;
+    gap: 16px;
+  }
+
+  .lang-switch a {
+    transition: color 0.3s;
+  }
+
+  .lang-switch a:hover,
+  .lang-switch [aria-current='true'] {
+    color: var(--paper);
   }
 
   .giant {
