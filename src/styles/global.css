@@ -1,0 +1,229 @@
+@import '@fontsource/hedvig-letters-serif/400.css';
+@import '@fontsource-variable/geist';
+
+:root {
+  --ink: #141413;
+  --paper: #ffffff;
+  --stone: #f2f1ee;
+  --mute: #8a8984;
+  --line: rgb(20 20 19 / 0.14);
+  --line-inverse: rgb(255 255 255 / 0.18);
+  --placeholder: #e4e2dd;
+  --placeholder-ink: #a9a69e;
+
+  --serif: 'Hedvig Letters Serif', 'Times New Roman', serif;
+  --sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --gutter: 24px;
+  --gap: 24px;
+  --section: clamp(96px, 14vw, 200px);
+
+  --fs-display: clamp(52px, 8.4vw, 136px);
+  --fs-statement: clamp(32px, 4.4vw, 68px);
+  --fs-h2: clamp(28px, 3.2vw, 48px);
+  --fs-h3: clamp(20px, 1.8vw, 28px);
+  --fs-body: 16px;
+  --fs-small: 14px;
+  --fs-micro: 12px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 809px) {
+  :root {
+    --gutter: 16px;
+    --gap: 16px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Typography */
+.serif {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.display {
+  font-size: var(--fs-display);
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.statement {
+  font-size: var(--fs-statement);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.05;
+}
+
+.h3 {
+  font-size: var(--fs-h3);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.small {
+  font-size: var(--fs-small);
+}
+
+.micro {
+  font-size: var(--fs-micro);
+  letter-spacing: 0;
+}
+
+.mute {
+  color: var(--mute);
+}
+
+.label {
+  font-size: var(--fs-small);
+  color: var(--mute);
+}
+
+/* Layout */
+.wrap {
+  padding-inline: var(--gutter);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.dark {
+  background: var(--ink);
+  color: var(--paper);
+  --line: var(--line-inverse);
+  --mute: rgb(255 255 255 / 0.55);
+}
+
+.stone {
+  background: var(--stone);
+}
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s var(--ease-out);
+}
+
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hide motion targets until JS takes over; reduced motion and no-JS stay visible. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    visibility: hidden;
+  }
+}
+
+/* Split-text masks */
+.line-mask {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Footer reveal: the page layer covers the sticky footer until it scrolls past. */
+.page {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+}
