@@ -29,6 +29,7 @@ const id = {
     facts: { type: 'Jenis', location: 'Lokasi', year: 'Tahun', area: 'Luas', scope: 'Lingkup kerja' },
     next: '(Proyek berikutnya)',
     view: 'foto',
+    open: 'Lihat proyek →',
     categories: { Residential: 'Rumah Tinggal', Hospitality: 'Hotel & Villa', Workplace: 'Kantor', Retail: 'Komersial' },
   },
 
@@ -185,6 +186,7 @@ const en: typeof id = {
     facts: { type: 'Type', location: 'Location', year: 'Year', area: 'Area', scope: 'Scope of work' },
     next: '(Next project)',
     view: 'photo',
+    open: 'View project →',
     categories: { Residential: 'Residential', Hospitality: 'Hotel & Villa', Workplace: 'Office', Retail: 'Commercial' },
   },
 

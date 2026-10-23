@@ -1,40 +1,214 @@
 ---
-import ProjectCard from './ProjectCard.astro';
+// Homepage "selected projects": full-screen cards that stack on top of each other while scrolling.
+import Media from './Media.astro';
 import SectionHead from './SectionHead.astro';
-import { getLang, getProjects, localizePath, useTranslations } from '../i18n/utils';
+import { getLang, getProjects, localizePath, slugOf, useTranslations } from '../i18n/utils';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 const projects = await getProjects(lang);
 const featured = projects.slice(0, 6);
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
 <section class="work section">
   <SectionHead title={t.work.selected} count={projects.length} link={{ label: t.work.all, href: localizePath('/work', lang) }} />
-  <div class="layout wrap grid">
-    {featured.map((project, i) => <ProjectCard project={project} class={`slot slot-${i + 1}`} />)}
+
+  <div class="stack" data-stack>
+    {
+      featured.map((project, i) => {
+        const { title, category, location, year, summary, cover } = project.data;
+        return (
+          <article class="card dark" data-stack-card>
+            <a href={localizePath(`/work/${slugOf(project)}`, lang)} class="card-inner" data-stack-inner>
+              <div class="card-media" data-stack-media>
+                <Media src={cover} alt={title} label={`${title} · cover`} class="fill" />
+              </div>
+              <div class="scrim" />
+              <div class="card-content wrap grid">
+                <p class="small index">
+                  {pad(i + 1)} <span class="mute">/ {pad(featured.length)}</span>
+                </p>
+                <p class="small meta">
+                  {t.work.categories[category]} · {location} · {year}
+                </p>
+                <h3 class="serif display title">{title}</h3>
+                <div class="side">
+                  <p class="summary">{summary}</p>
+                  <span class="small cta">{t.work.open}</span>
+                </div>
+              </div>
+              <div class="shade" data-stack-shade />
+            </a>
+          </article>
+        );
+      })
+    }
   </div>
 </section>
 
 <style>
-  .layout {
-    row-gap: clamp(64px, 9vw, 140px);
-    align-items: start;
-    grid-auto-flow: dense;
+  .work {
+    padding-bottom: 0;
   }
 
-  /* Alternating rhythm: wide + narrow, narrow + wide, centred feature. */
-  .layout :global(.slot-1) { grid-column: 1 / span 7; }
-  .layout :global(.slot-2) { grid-column: 9 / span 4; margin-top: 30%; }
-  .layout :global(.slot-3) { grid-column: 2 / span 4; }
-  .layout :global(.slot-4) { grid-column: 7 / span 6; margin-top: 18%; }
-  .layout :global(.slot-5) { grid-column: 5 / span 8; }
-  .layout :global(.slot-6) { grid-column: 1 / span 3; margin-top: 40%; }
+  .card {
+    position: relative;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .card-inner {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    transform-origin: 50% 0%;
+  }
+
+  .card-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .card-media :global(.fill) {
+    position: absolute;
+    inset: 0;
+  }
+
+  .card-media :global(.media-inner) {
+    transition: scale 1.4s var(--ease-out);
+  }
+
+  .card-inner:hover .card-media :global(.media-inner) {
+    scale: 1.03;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0.35), transparent 28%, transparent 50%, rgb(0 0 0 / 0.6));
+  }
+
+  .card-content {
+    position: absolute;
+    inset: 0;
+    grid-template-rows: auto 1fr auto;
+    padding-block: 88px 32px;
+  }
+
+  .index {
+    grid-column: 1 / span 6;
+  }
+
+  .meta {
+    grid-column: 7 / span 6;
+    justify-self: end;
+  }
+
+  .title {
+    grid-column: 1 / span 8;
+    grid-row: 3;
+    align-self: end;
+  }
+
+  .side {
+    grid-column: 9 / span 4;
+    grid-row: 3;
+    align-self: end;
+    display: grid;
+    gap: 20px;
+    justify-items: start;
+  }
+
+  .summary {
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  .cta {
+    padding: 10px 18px;
+    border: 1px solid rgb(255 255 255 / 0.4);
+    border-radius: 999px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .card-inner:hover .cta {
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .shade {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+  }
 
   @media (max-width: 809px) {
-    .layout :global(.slot) {
-      grid-column: 1 / -1 !important;
-      margin-top: 0 !important;
+    .index,
+    .meta,
+    .title,
+    .side {
+      grid-column: 1 / -1;
+    }
+
+    .meta {
+      justify-self: start;
+    }
+
+    .title {
+      grid-row: auto;
+    }
+
+    .side {
+      grid-row: auto;
+      margin-top: 16px;
+    }
+
+    .card-content {
+      grid-template-rows: auto auto 1fr auto auto;
+    }
+
+    .title {
+      grid-row: 4;
+    }
+
+    .side {
+      grid-row: 5;
     }
   }
 </style>
+
+<script>
+  import { gsap, ScrollTrigger, reduceMotion } from '../scripts/motion';
+
+  const cards = gsap.utils.toArray<HTMLElement>('[data-stack-card]');
+
+  if (cards.length && !reduceMotion) {
+    const last = cards[cards.length - 1];
+
+    cards.forEach((card, i) => {
+      const inner = card.querySelector('[data-stack-inner]');
+      const media = card.querySelector('[data-stack-media]');
+      const shade = card.querySelector('[data-stack-shade]');
+
+      // Photo settles from a slight zoom as the card slides into view.
+      gsap.fromTo(
+        media,
+        { scale: 1.15 },
+        { scale: 1, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'top top', scrub: true } },
+      );
+
+      if (card === last) return;
+
+      // Hold every card in place until the last one arrives, so later cards slide over earlier ones.
+      ScrollTrigger.create({ trigger: card, start: 'top top', endTrigger: last, end: 'top top', pin: true, pinSpacing: false });
+
+      // While the next card covers this one, shrink and darken it.
+      const next = { trigger: cards[i + 1], start: 'top bottom', end: 'top top', scrub: true };
+      gsap.to(inner, { scale: 0.88, borderRadius: 8, ease: 'none', scrollTrigger: next });
+      gsap.to(shade, { opacity: 0.6, ease: 'none', scrollTrigger: next });
+    });
+  }
+</script>
