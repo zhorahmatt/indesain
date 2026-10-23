@@ -15,7 +15,7 @@ const id = {
   intro: {
     label: '(Tentang kami)',
     statement:
-      'Kami studio arsitektur dan desain interior di Makassar. Sudah sepuluh tahun kami merancang rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
+      'Kami studio arsitektur dan desain interior di Makassar. Sejak 2011, kami merancang rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
     stats: ['Tahun berpengalaman', 'Proyek selesai', 'Orang di tim kami', 'Kota proyek'],
   },
 
@@ -172,7 +172,7 @@ const en: typeof id = {
   intro: {
     label: '(About us)',
     statement:
-      "We're an architecture and interior design studio in Makassar. For ten years we've designed homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
+      "We're an architecture and interior design studio in Makassar. Since 2011 we've designed homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
     stats: ['Years of practice', 'Projects completed', 'People on the team', 'Cities'],
   },
 

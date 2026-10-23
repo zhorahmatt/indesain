@@ -25,6 +25,7 @@ const business = {
   '@type': 'ProfessionalService',
   name: site.legalName,
   alternateName: site.name,
+  foundingDate: String(site.founded),
   description: t.description,
   url: new URL(localizePath('/', lang), Astro.site).href,
   telephone: site.phoneHref.replace('tel:', ''),

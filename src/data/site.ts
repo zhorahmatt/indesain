@@ -1,10 +1,11 @@
 // Brand details that don't change between languages.
 // Location, phone, hours and Instagram come from the studio's Google Maps listing.
-// `email` and `stats` are still placeholders. Translatable copy lives in src/i18n/ui.ts.
+// `email` and the project/team counts in `stats` are still placeholders. Translatable copy lives in src/i18n/ui.ts.
 
 export const site = {
   name: 'indesain',
   legalName: 'INDESAIN ARSITEK',
+  founded: 2011,
   city: 'Makassar',
   coordinates: '5.18° S, 119.45° E',
   geo: { lat: -5.1815142, lng: 119.4478294 },
@@ -33,11 +34,12 @@ export const site = {
   social: [{ label: 'Instagram', href: 'https://www.instagram.com/indesain_makassar/' }],
 };
 
+// Years in practice counts up from the founding year at build time (2026 → 15).
 export const stats = [
-  { value: 10, suffix: '' },
+  { value: new Date().getFullYear() - site.founded, suffix: '' },
   { value: 80, suffix: '+' },
   { value: 18, suffix: '' },
-  { value: 3, suffix: '' },
+  { value: 10, suffix: '' },
 ];
 
 export const navPaths = ['/work', '/studio', '/journal', '/contact'] as const;
