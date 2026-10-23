@@ -1,0 +1,60 @@
+---
+import { site } from '../data/site';
+import { getLang, localizePath, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<section class="cta section wrap grid">
+  <p class="label cta-label">{t.cta.label}</p>
+  <h2 class="serif statement cta-title" data-reveal="lines">{t.cta.title}</h2>
+  <div class="cta-actions" data-reveal="fade">
+    <a href={`mailto:${site.email}`} class="serif h3 link-underline">{site.email}</a>
+    <a href={localizePath('/contact', lang)} class="small cta-button">{t.cta.button}</a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    row-gap: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .cta-label {
+    grid-column: 1 / span 3;
+    padding-top: 0.6em;
+  }
+
+  .cta-title {
+    grid-column: 4 / span 8;
+  }
+
+  .cta-actions {
+    grid-column: 4 / span 8;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px 40px;
+  }
+
+  .cta-button {
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 999px;
+    transition: opacity 0.3s;
+  }
+
+  .cta-button:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 809px) {
+    .cta-label,
+    .cta-title,
+    .cta-actions {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

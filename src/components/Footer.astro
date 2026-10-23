@@ -1,0 +1,169 @@
+---
+import { navPaths, site } from '../data/site';
+import { getLang, localizePath, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+const year = new Date().getFullYear();
+const columns = [
+  {
+    title: t.footer.pages,
+    links: (['/', ...navPaths] as const).map((path) => ({
+      label: path === '/' ? t.nav.home : t.nav[path.slice(1) as keyof typeof t.nav],
+      href: localizePath(path, lang),
+    })),
+  },
+  { title: t.footer.follow, links: site.social },
+];
+---
+
+<!-- Pinned under the page; the content layer above scrolls away to reveal it (see Base.astro). -->
+<footer class="footer dark">
+  <div class="top">
+    <div class="cols wrap grid small">
+      <div class="brand">
+        <p class="serif h3">{site.name}</p>
+        <p>{t.tagline}</p>
+      </div>
+      {
+        columns.map((col) => (
+          <div>
+            <p class="mute">{col.title}</p>
+            <ul>
+              {col.links.map((link) => (
+                <li>
+                  <a href={link.href} class="link-underline">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+      <div>
+        <p class="mute">{t.footer.studio}</p>
+        <address>
+          {site.address.map((line) => <span>{line}</span>)}
+          <a href={`mailto:${site.email}`} class="link-underline">{site.email}</a>
+          <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="link-underline">{site.phone}</a>
+        </address>
+      </div>
+    </div>
+
+    <div class="colophon wrap small mute">
+      <p>© {year} {site.name}</p>
+      <p>{site.city} · {site.coordinates}</p>
+    </div>
+  </div>
+
+  <div class="giant wrap" aria-hidden="true">
+    <p class="serif giant-word" data-fit>{site.name}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100svh;
+    overflow: hidden;
+    padding-top: 140px;
+  }
+
+  .cols {
+    row-gap: 40px;
+  }
+
+  .cols > div {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    grid-column: span 2;
+  }
+
+  .cols .brand {
+    grid-column: 1 / span 6;
+  }
+
+  address {
+    display: grid;
+    gap: 2px;
+    font-style: normal;
+  }
+
+  address a {
+    justify-self: start;
+  }
+
+  address a:first-of-type {
+    margin-top: 8px;
+  }
+
+  .colophon {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 64px 24px;
+  }
+
+  .giant {
+    line-height: 0.76;
+    margin-bottom: -0.12em;
+  }
+
+  .giant-word {
+    display: inline-block;
+    white-space: nowrap;
+    letter-spacing: -0.06em;
+    font-size: 26vw;
+  }
+
+  @media (max-width: 1199px) {
+    .cols > div {
+      grid-column: span 3;
+    }
+
+    .cols .brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 809px) {
+    .footer {
+      padding-top: 96px;
+    }
+
+    .cols > div {
+      grid-column: span 6;
+    }
+
+    .colophon {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>
+
+<script>
+  // Scale the wordmark so it spans the full content width at any viewport.
+  const word = document.querySelector<HTMLElement>('[data-fit]');
+
+  function fit() {
+    if (!word?.parentElement) return;
+    const styles = getComputedStyle(word.parentElement);
+    const available =
+      word.parentElement.clientWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight);
+    word.style.fontSize = '100px';
+    word.style.fontSize = `${(available / word.scrollWidth) * 100}px`;
+  }
+
+  if (word) {
+    document.fonts.ready.then(fit);
+    window.addEventListener('resize', fit);
+  }
+</script>

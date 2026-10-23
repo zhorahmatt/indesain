@@ -1,0 +1,210 @@
+---
+import { navPaths, site } from '../data/site';
+import { getLang, langs, localizePath, unlocalizePath, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const path = unlocalizePath(Astro.url.pathname);
+
+const items = navPaths.map((href) => ({
+  label: t.nav[href.slice(1) as keyof typeof t.nav],
+  path: href,
+  href: localizePath(href, lang),
+}));
+const switcher = langs.map((code) => ({
+  code,
+  label: code.toUpperCase(),
+  href: localizePath(path, code),
+  name: useTranslations(code).langName,
+}));
+---
+
+<header class="nav wrap">
+  <a href={localizePath('/', lang)} class="wordmark serif" aria-label={`${site.name} — ${t.nav.home}`}>
+    {site.name}<sup>®</sup>
+  </a>
+  <nav aria-label={t.menu.primary}>
+    <ul class="links small">
+      {
+        items.map((item) => (
+          <li>
+            <a href={item.href} class="link-underline" aria-current={path.startsWith(item.path) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="lang small" aria-label={t.menu.language}>
+      {
+        switcher.map((option) => (
+          <li>
+            <a
+              href={option.href}
+              hreflang={option.code}
+              lang={option.code}
+              title={option.name}
+              aria-current={option.code === lang ? 'true' : undefined}
+            >
+              {option.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <button
+      class="menu-toggle small"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-open-label={t.menu.open}
+      data-close-label={t.menu.close}
+    >
+      {t.menu.open}
+    </button>
+  </nav>
+</header>
+
+<div id="mobile-menu" class="mobile-menu dark wrap" hidden>
+  <ul>
+    <li><a href={localizePath('/', lang)} class="serif">{t.nav.home}</a></li>
+    {items.map((item) => <li><a href={item.href} class="serif">{item.label}</a></li>)}
+  </ul>
+  <div class="mobile-foot small">
+    <p class="mute">{site.email}</p>
+    <p class="mobile-lang">
+      {
+        switcher.map((option) => (
+          <a href={option.href} hreflang={option.code} aria-current={option.code === lang ? 'true' : undefined}>
+            {option.name}
+          </a>
+        ))
+      }
+    </p>
+  </div>
+</div>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    color: #fff;
+    mix-blend-mode: difference;
+  }
+
+  .wordmark {
+    font-size: 22px;
+    letter-spacing: -0.04em;
+  }
+
+  .wordmark sup {
+    font-size: 0.45em;
+    margin-left: 1px;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .links {
+    display: flex;
+    gap: 14px;
+  }
+
+  [aria-current='page'] {
+    background-size: 100% 1px;
+  }
+
+  .lang {
+    display: flex;
+    gap: 2px;
+  }
+
+  .lang li + li::before {
+    content: '/';
+    margin-right: 2px;
+    opacity: 0.5;
+  }
+
+  .lang a {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+
+  .lang a:hover,
+  .lang [aria-current='true'] {
+    opacity: 1;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block: 96px 32px;
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  .mobile-menu a.serif {
+    font-size: 48px;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  .mobile-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .mobile-lang {
+    display: flex;
+    gap: 16px;
+  }
+
+  .mobile-lang a {
+    opacity: 0.55;
+  }
+
+  .mobile-lang [aria-current='true'] {
+    opacity: 1;
+  }
+
+  @media (max-width: 809px) {
+    .links {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = (open ? toggle.dataset.closeLabel : toggle.dataset.openLabel) ?? '';
+    if (menu) menu.hidden = !open;
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  });
+</script>

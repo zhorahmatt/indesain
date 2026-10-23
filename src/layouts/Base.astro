@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import CursorTrail from '../components/CursorTrail.astro';
+import ContactCta from '../components/ContactCta.astro';
+import { site } from '../data/site';
+import { defaultLang, getLang, langs, localizePath, unlocalizePath, useTranslations } from '../i18n/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Show the "Start a project" section above the footer. */
+  cta?: boolean;
+}
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const { title, description = t.description, cta = true } = Astro.props;
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} · ${t.tagline}`;
+const path = unlocalizePath(Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_GB'} />
+    {langs.map((code) => <link rel="alternate" hreflang={code} href={new URL(localizePath(path, code), Astro.site)} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(localizePath(path, defaultLang), Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <Nav />
+    <!-- Content layer sits above the pinned footer and scrolls off to reveal it. -->
+    <div class="page">
+      <main>
+        <slot />
+      </main>
+      {cta && <ContactCta />}
+    </div>
+    <Footer />
+    <CursorTrail fixed />
+    <script>
+      import { initMotion } from '../scripts/motion';
+      initMotion();
+    </script>
+  </body>
+</html>
