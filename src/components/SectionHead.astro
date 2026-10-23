@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  count?: number;
+  link?: { label: string; href: string };
+}
+
+const { title, count, link } = Astro.props;
+---
+
+<div class="head wrap">
+  <h2 class="serif h2" data-reveal="lines">
+    {title}{count !== undefined && <sup class="count small mute">({String(count).padStart(2, '0')})</sup>}
+  </h2>
+  {link && <a href={link.href} class="small link-underline">{link.label} →</a>}
+</div>
+
+<style>
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    padding-bottom: 24px;
+    margin-bottom: clamp(40px, 6vw, 80px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .count {
+    margin-left: 6px;
+    vertical-align: top;
+    font-family: var(--sans);
+    letter-spacing: 0;
+  }
+</style>

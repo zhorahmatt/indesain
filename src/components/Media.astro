@@ -1,0 +1,89 @@
+---
+// Renders an image or video from /public when `src` is set, otherwise a labelled placeholder
+// at the same aspect ratio, so layouts hold their shape until real assets arrive.
+interface Props {
+  src?: string;
+  alt?: string;
+  label?: string;
+  ratio?: string;
+  video?: boolean;
+  poster?: string;
+  parallax?: boolean;
+  eager?: boolean;
+  class?: string;
+}
+
+const {
+  src,
+  alt = '',
+  label = 'Image',
+  ratio,
+  video = false,
+  poster,
+  parallax = false,
+  eager = false,
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={['media', className, { 'is-empty': !src }]}
+  style={ratio ? `aspect-ratio: ${ratio}` : undefined}
+  data-parallax={parallax ? '' : undefined}
+>
+  <div class="media-inner" data-parallax-target={parallax ? '' : undefined}>
+    {
+      src && video ? (
+        <video src={src} poster={poster} autoplay muted loop playsinline preload="metadata" />
+      ) : src ? (
+        <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+      ) : (
+        <div class="placeholder" role="img" aria-label={alt || label}>
+          <span class="micro">{video ? `Video · ${label}` : label}</span>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .media {
+    position: relative;
+    overflow: hidden;
+    background: var(--placeholder);
+  }
+
+  .media-inner {
+    position: absolute;
+    inset: 0;
+  }
+
+  [data-parallax] .media-inner {
+    inset: -8% 0;
+  }
+
+  img,
+  video,
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .placeholder {
+    display: grid;
+    place-items: center;
+    color: var(--placeholder-ink);
+    background:
+      linear-gradient(135deg, transparent 49.85%, rgb(0 0 0 / 0.06) 50%, transparent 50.15%),
+      linear-gradient(45deg, transparent 49.85%, rgb(0 0 0 / 0.06) 50%, transparent 50.15%),
+      var(--placeholder);
+  }
+
+  .placeholder span {
+    padding: 6px 10px;
+    background: rgb(255 255 255 / 0.7);
+    color: var(--ink);
+    border-radius: 2px;
+  }
+</style>

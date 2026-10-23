@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Media from './Media.astro';
+import { getLang, localizePath, slugOf, useTranslations } from '../i18n/utils';
+
+interface Props {
+  project: CollectionEntry<'work'>;
+  class?: string;
+}
+
+const { project, class: className } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const { title, category, location, year, cover, format } = project.data;
+const ratio = format === 'portrait' ? '4 / 5' : '3 / 2';
+---
+
+<a href={localizePath(`/work/${slugOf(project)}`, lang)} class:list={['card', className]}>
+  <div class="frame" data-reveal="media">
+    <Media src={cover} alt={title} label={`${title} · ${ratio.replace(/ /g, '')}`} ratio={ratio} parallax />
+  </div>
+  <div class="caption">
+    <h3 class="serif h3">{title}</h3>
+    <p class="small mute">{t.work.categories[category]}, {location}, {year}</p>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: grid;
+    gap: 14px;
+  }
+
+  .frame :global(.media-inner) {
+    transition: scale 1.2s var(--ease-out);
+  }
+
+  .card:hover .frame :global(.media-inner) {
+    scale: 1.04;
+  }
+
+  .caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  @media (max-width: 809px) {
+    .caption {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

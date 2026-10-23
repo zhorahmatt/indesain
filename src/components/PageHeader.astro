@@ -1,0 +1,36 @@
+---
+interface Props {
+  label: string;
+  title: string;
+}
+
+const { label, title } = Astro.props;
+---
+
+<header class="page-header wrap grid">
+  <p class="label ph-label">({label})</p>
+  <h1 class="serif display ph-title" data-reveal="lines" data-trigger="load" data-delay="0.1">{title}</h1>
+  <slot />
+</header>
+
+<style>
+  .page-header {
+    padding-top: clamp(140px, 18vw, 240px);
+    padding-bottom: clamp(48px, 6vw, 96px);
+    row-gap: 24px;
+  }
+
+  .ph-label {
+    grid-column: 1 / -1;
+  }
+
+  .ph-title {
+    grid-column: 1 / span 10;
+  }
+
+  @media (max-width: 809px) {
+    .ph-title {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

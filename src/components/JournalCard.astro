@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Media from './Media.astro';
+import { getLang, localizePath, slugOf, useTranslations } from '../i18n/utils';
+
+interface Props {
+  post: CollectionEntry<'journal'>;
+  class?: string;
+}
+
+const { post, class: className } = Astro.props;
+const { title, category, date, cover } = post.data;
+const lang = getLang(Astro.currentLocale);
+const formatted = date.toLocaleDateString(useTranslations(lang).dateLocale, { month: 'short', year: 'numeric' });
+---
+
+<a href={localizePath(`/journal/${slugOf(post)}`, lang)} class:list={['jcard', className]} draggable="false">
+  <Media src={cover} alt={title} label="Cover · 4:5" ratio="4 / 5" />
+  <p class="small mute meta"><span>{formatted}</span><span>{category}</span></p>
+  <h3 class="serif h3">{title}</h3>
+</a>
+
+<style>
+  .jcard {
+    display: grid;
+    gap: 12px;
+  }
+
+  .jcard :global(.media-inner) {
+    transition: scale 1.2s var(--ease-out);
+  }
+
+  .jcard:hover :global(.media-inner) {
+    scale: 1.04;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+</style>
