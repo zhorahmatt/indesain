@@ -1,0 +1,113 @@
+---
+// A fading line that follows the pointer.
+// - Default: scoped to its parent element (which must be positioned); the line uses the parent's `color`.
+// - `fixed`: covers the whole viewport on every page; the line inverts against whatever is underneath.
+interface Props {
+  /** How long a point of the line stays visible, in ms. */
+  life?: number;
+  /** Line width at the cursor end, in px. */
+  width?: number;
+  fixed?: boolean;
+}
+
+const { life = 700, width = 1.5, fixed = false } = Astro.props;
+---
+
+<canvas
+  class:list={['cursor-trail', { 'is-fixed': fixed }]}
+  data-cursor-trail
+  data-life={life}
+  data-width={width}
+  data-fixed={fixed ? '' : undefined}
+  aria-hidden="true"></canvas>
+
+<style>
+  .cursor-trail {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .cursor-trail.is-fixed {
+    position: fixed;
+    z-index: 45;
+    color: #fff;
+    mix-blend-mode: difference;
+  }
+</style>
+
+<script>
+  type Point = { x: number; y: number; t: number };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  function attach(canvas: HTMLCanvasElement) {
+    const fixed = canvas.hasAttribute('data-fixed');
+    const host = fixed ? null : canvas.parentElement;
+    const ctx = canvas.getContext('2d');
+    if ((!fixed && !host) || !ctx) return;
+
+    const life = Number(canvas.dataset.life);
+    const maxWidth = Number(canvas.dataset.width);
+    const points: Point[] = [];
+    let frame = 0;
+    let color = '';
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const width = host ? host.clientWidth : window.innerWidth;
+      const height = host ? host.clientHeight : window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      color = getComputedStyle(host ?? canvas).color;
+    };
+
+    const draw = () => {
+      const now = performance.now();
+      while (points.length && now - points[0].t > life) points.shift();
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = color;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      // Each segment is a curve between midpoints, thinning and fading with age.
+      for (let i = 1; i < points.length - 1; i++) {
+        const prev = points[i - 1];
+        const curr = points[i];
+        const next = points[i + 1];
+        const fresh = 1 - (now - curr.t) / life;
+
+        ctx.globalAlpha = fresh;
+        ctx.lineWidth = Math.max(maxWidth * fresh, 0.25);
+        ctx.beginPath();
+        ctx.moveTo((prev.x + curr.x) / 2, (prev.y + curr.y) / 2);
+        ctx.quadraticCurveTo(curr.x, curr.y, (curr.x + next.x) / 2, (curr.y + next.y) / 2);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      frame = points.length ? requestAnimationFrame(draw) : 0;
+    };
+
+    (host ?? window).addEventListener('pointermove', (event) => {
+      const { clientX, clientY } = event as PointerEvent;
+      const rect = host?.getBoundingClientRect() ?? { left: 0, top: 0 };
+      points.push({ x: clientX - rect.left, y: clientY - rect.top, t: performance.now() });
+      if (!frame) frame = requestAnimationFrame(draw);
+    });
+
+    if (host) new ResizeObserver(resize).observe(host);
+    else window.addEventListener('resize', resize);
+    resize();
+  }
+
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll<HTMLCanvasElement>('[data-cursor-trail]').forEach(attach);
+  }
+</script>
