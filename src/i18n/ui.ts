@@ -7,7 +7,7 @@ const id = {
   description:
     'indesain adalah studio arsitektur dan desain interior di Makassar. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari konsep sampai serah terima.',
 
-  nav: { home: 'Beranda', work: 'Proyek', studio: 'Studio', journal: 'Jurnal', contact: 'Kontak' },
+  nav: { home: 'Beranda', work: 'Karya', studio: 'Tim', journal: 'Cerita', contact: 'Hubungi' },
   menu: { open: 'Menu', close: 'Tutup', primary: 'Navigasi utama', language: 'Bahasa' },
 
   hero: { lines: ['Nyaman dihuni,', 'bukan cuma', 'enak dilihat.'], videoAlt: 'Video interior rumah' },
@@ -22,7 +22,7 @@ const id = {
   work: {
     selected: 'Proyek pilihan',
     all: 'Lihat semua proyek',
-    pageLabel: 'Proyek',
+    pageLabel: 'Karya',
     pageTitle: 'Beberapa proyek yang pernah kami kerjakan',
     filterAll: 'Semua',
     filterLabel: 'Filter proyek',
@@ -104,10 +104,10 @@ const id = {
   },
 
   journal: {
-    title: 'Jurnal',
-    all: 'Semua artikel',
-    back: '← Semua artikel',
-    pageLabel: 'Jurnal',
+    title: 'Cerita',
+    all: 'Semua cerita',
+    back: '← Semua cerita',
+    pageLabel: 'Cerita',
     pageTitle: 'Cerita dan tips dari studio',
   },
 
@@ -120,7 +120,7 @@ const id = {
   footer: { pages: 'Halaman', follow: 'Ikuti kami', studio: 'Studio', directions: 'Petunjuk arah' },
 
   studio: {
-    label: 'Studio',
+    label: 'Tim',
     title: 'Studio kecil, dengan tim yang turun langsung ke lapangan',
     photoAlt: 'Suasana studio indesain',
     people: 'Tim kami',
@@ -133,7 +133,7 @@ const id = {
   },
 
   contact: {
-    label: 'Kontak',
+    label: 'Hubungi',
     title: 'Ceritakan proyek Anda',
     email: 'Email',
     phone: 'Telepon',
@@ -164,7 +164,7 @@ const en: typeof id = {
   description:
     'indesain is an architecture and interior design studio in Makassar. We design homes, offices, hotels and cafés, from first concept to handover.',
 
-  nav: { home: 'Home', work: 'Projects', studio: 'Studio', journal: 'Journal', contact: 'Contact' },
+  nav: { home: 'Home', work: 'Work', studio: 'Team', journal: 'Story', contact: 'Connect' },
   menu: { open: 'Menu', close: 'Close', primary: 'Main navigation', language: 'Language' },
 
   hero: { lines: ['Made to be', 'lived in, not', 'just looked at.'], videoAlt: 'Interior video of a home' },
@@ -179,7 +179,7 @@ const en: typeof id = {
   work: {
     selected: 'Selected projects',
     all: 'See all projects',
-    pageLabel: 'Projects',
+    pageLabel: 'Work',
     pageTitle: "Some of the work we've done",
     filterAll: 'All',
     filterLabel: 'Filter projects',
@@ -260,10 +260,10 @@ const en: typeof id = {
   },
 
   journal: {
-    title: 'Journal',
-    all: 'All articles',
-    back: '← All articles',
-    pageLabel: 'Journal',
+    title: 'Story',
+    all: 'All stories',
+    back: '← All stories',
+    pageLabel: 'Story',
     pageTitle: 'Stories and tips from the studio',
   },
 
@@ -276,7 +276,7 @@ const en: typeof id = {
   footer: { pages: 'Pages', follow: 'Follow us', studio: 'Studio', directions: 'Get directions' },
 
   studio: {
-    label: 'Studio',
+    label: 'Team',
     title: "A small studio, with a team that's on site",
     photoAlt: 'Inside the indesain studio',
     people: 'Our team',
@@ -289,7 +289,7 @@ const en: typeof id = {
   },
 
   contact: {
-    label: 'Contact',
+    label: 'Connect',
     title: 'Tell us about your project',
     email: 'Email',
     phone: 'Phone',
