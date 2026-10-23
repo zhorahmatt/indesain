@@ -1,0 +1,10 @@
+---
+import WorkDetail from '../../../views/WorkDetail.astro';
+import { projectPaths } from '../../../i18n/utils';
+
+export const getStaticPaths = () => projectPaths('en');
+
+const { project, next } = Astro.props;
+---
+
+<WorkDetail project={project} next={next} />

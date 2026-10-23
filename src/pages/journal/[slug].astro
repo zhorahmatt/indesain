@@ -1,0 +1,10 @@
+---
+import JournalDetail from '../../views/JournalDetail.astro';
+import { postPaths } from '../../i18n/utils';
+
+export const getStaticPaths = () => postPaths('id');
+
+const { post } = Astro.props;
+---
+
+<JournalDetail post={post} />
