@@ -47,7 +47,8 @@ const columns = [
         <address>
           {site.address.map((line) => <span>{line}</span>)}
           <a href={`mailto:${site.email}`} class="link-underline">{site.email}</a>
-          <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="link-underline">{site.phone}</a>
+          <a href={site.phoneHref} class="link-underline">{site.phone}</a>
+          <a href={site.maps.link} class="link-underline" target="_blank" rel="noopener">{t.footer.directions} ↗</a>
         </address>
       </div>
     </div>

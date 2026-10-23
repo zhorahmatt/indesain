@@ -5,7 +5,7 @@ const id = {
   langName: 'Bahasa Indonesia',
   tagline: 'Desain Interior & Arsitektur',
   description:
-    'indesain adalah studio desain interior di Jakarta. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari konsep sampai serah terima.',
+    'indesain adalah studio arsitektur dan desain interior di Makassar. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari konsep sampai serah terima.',
 
   nav: { home: 'Beranda', work: 'Proyek', studio: 'Studio', journal: 'Jurnal', contact: 'Kontak' },
   menu: { open: 'Menu', close: 'Tutup', primary: 'Navigasi utama', language: 'Bahasa' },
@@ -15,7 +15,7 @@ const id = {
   intro: {
     label: '(Tentang kami)',
     statement:
-      'Kami studio desain interior di Jakarta. Sudah sepuluh tahun kami merancang rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
+      'Kami studio arsitektur dan desain interior di Makassar. Sudah sepuluh tahun kami merancang rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
     stats: ['Tahun berpengalaman', 'Proyek selesai', 'Orang di tim kami', 'Kota proyek'],
   },
 
@@ -116,7 +116,7 @@ const id = {
     button: 'Hubungi kami →',
   },
 
-  footer: { pages: 'Halaman', follow: 'Ikuti kami', studio: 'Studio' },
+  footer: { pages: 'Halaman', follow: 'Ikuti kami', studio: 'Studio', directions: 'Petunjuk arah' },
 
   studio: {
     label: 'Studio',
@@ -137,6 +137,11 @@ const id = {
     email: 'Email',
     phone: 'Telepon',
     studio: 'Studio',
+    hours: 'Jam buka',
+    days: { Mo: 'Senin', Tu: 'Selasa', We: 'Rabu', Th: 'Kamis', Fr: 'Jumat', Sa: 'Sabtu', Su: 'Minggu' },
+    closed: 'Tutup',
+    directions: 'Buka di Google Maps →',
+    mapTitle: 'Peta lokasi studio indesain di Makassar',
     form: {
       name: 'Nama',
       email: 'Email',
@@ -156,7 +161,7 @@ const en: typeof id = {
   langName: 'English',
   tagline: 'Interior Design & Architecture',
   description:
-    'indesain is an interior design studio in Jakarta. We design homes, offices, hotels and cafés, from first concept to handover.',
+    'indesain is an architecture and interior design studio in Makassar. We design homes, offices, hotels and cafés, from first concept to handover.',
 
   nav: { home: 'Home', work: 'Projects', studio: 'Studio', journal: 'Journal', contact: 'Contact' },
   menu: { open: 'Menu', close: 'Close', primary: 'Main navigation', language: 'Language' },
@@ -166,7 +171,7 @@ const en: typeof id = {
   intro: {
     label: '(About us)',
     statement:
-      "We're an interior design studio in Jakarta. For ten years we've designed homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
+      "We're an architecture and interior design studio in Makassar. For ten years we've designed homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
     stats: ['Years of practice', 'Projects completed', 'People on the team', 'Cities'],
   },
 
@@ -266,7 +271,7 @@ const en: typeof id = {
     button: 'Get in touch →',
   },
 
-  footer: { pages: 'Pages', follow: 'Follow us', studio: 'Studio' },
+  footer: { pages: 'Pages', follow: 'Follow us', studio: 'Studio', directions: 'Get directions' },
 
   studio: {
     label: 'Studio',
@@ -287,6 +292,11 @@ const en: typeof id = {
     email: 'Email',
     phone: 'Phone',
     studio: 'Studio',
+    hours: 'Opening hours',
+    days: { Mo: 'Monday', Tu: 'Tuesday', We: 'Wednesday', Th: 'Thursday', Fr: 'Friday', Sa: 'Saturday', Su: 'Sunday' },
+    closed: 'Closed',
+    directions: 'Open in Google Maps →',
+    mapTitle: 'Map showing the indesain studio in Makassar',
     form: {
       name: 'Name',
       email: 'Email',

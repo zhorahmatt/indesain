@@ -1,20 +1,36 @@
 // Brand details that don't change between languages.
-// Everything here is placeholder content — replace with indesain's real details.
-// Translatable copy lives in src/i18n/ui.ts.
+// Location, phone, hours and Instagram come from the studio's Google Maps listing.
+// `email` and `stats` are still placeholders. Translatable copy lives in src/i18n/ui.ts.
 
 export const site = {
   name: 'indesain',
-  city: 'Jakarta',
-  coordinates: '6.2° S, 106.8° E',
+  legalName: 'INDESAIN ARSITEK',
+  city: 'Makassar',
+  coordinates: '5.18° S, 119.45° E',
+  geo: { lat: -5.1815142, lng: 119.4478294 },
+  plusCode: 'RC9X+94',
   email: 'hello@indesain.id',
-  phone: '+62 21 0000 0000',
-  address: ['Jl. Placeholder No. 00', 'Jakarta Selatan 12000', 'Indonesia'],
-  social: [
-    { label: 'Instagram', href: '#' },
-    { label: 'Pinterest', href: '#' },
-    { label: 'LinkedIn', href: '#' },
-    { label: 'Behance', href: '#' },
+  phone: '0852-4266-2257',
+  phoneHref: 'tel:+6285242662257',
+  address: ['Jl. Karaeng Bontotangnga VI No. 7', 'Karunrung, Kec. Rappocini', 'Makassar, Sulawesi Selatan 90221'],
+  postal: {
+    street: 'Jl. Karaeng Bontotangnga VI No. 7, Karunrung, Kec. Rappocini',
+    locality: 'Makassar',
+    region: 'Sulawesi Selatan',
+    code: '90221',
+    country: 'ID',
+  },
+  maps: {
+    link: 'https://maps.app.goo.gl/USobWM1mmdyQy4D7A',
+    embed:
+      'https://maps.google.com/maps?q=INDESAIN%20ARSITEK%2C%20Jl.%20Karaeng%20Bontotangnga%20VI%20No.7%2C%20Makassar&ll=-5.1815142,119.4478294&z=16&output=embed',
+  },
+  // Opening hours in 24h time; day labels are translated in ui.ts.
+  hours: [
+    { days: ['Mo', 'Tu', 'We'], opens: '07:30', closes: '21:00' },
+    { days: ['Th', 'Fr', 'Sa'], opens: '07:00', closes: '21:00' },
   ],
+  social: [{ label: 'Instagram', href: 'https://www.instagram.com/indesain_makassar/' }],
 };
 
 export const stats = [

@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import { ui } from './ui';
+import { site } from '../data/site';
 
 export type Lang = keyof typeof ui;
 
@@ -52,4 +53,15 @@ export async function projectPaths(lang: Lang) {
 export async function postPaths(lang: Lang) {
   const posts = await getPosts(lang);
   return posts.map((post) => ({ params: { slug: slugOf(post) }, props: { post } }));
+}
+
+/** Opening hours as display rows, e.g. "Senin–Rabu · 07.30–21.00"; days not listed are shown as closed. */
+export function openingHours(lang: Lang) {
+  const t = ui[lang].contact;
+  const time = (value: string) => (lang === 'id' ? value.replace(':', '.') : value);
+  const rows = site.hours.map((h) => ({
+    days: `${t.days[h.days[0]]}–${t.days[h.days[h.days.length - 1]]}`,
+    time: `${time(h.opens)}–${time(h.closes)}`,
+  }));
+  return [...rows, { days: t.days.Su, time: t.closed }];
 }

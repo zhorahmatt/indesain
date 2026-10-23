@@ -2,10 +2,11 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import { site } from '../data/site';
-import { getLang, useTranslations } from '../i18n/utils';
+import { getLang, openingHours, useTranslations } from '../i18n/utils';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
+const hours = openingHours(lang);
 ---
 
 <Base title={t.contact.label} cta={false}>
@@ -19,11 +20,25 @@ const t = useTranslations(lang);
       </div>
       <div>
         <p class="mute">{t.contact.phone}</p>
-        <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="link-underline">{site.phone}</a>
+        <a href={site.phoneHref} class="link-underline">{site.phone}</a>
       </div>
       <div>
         <p class="mute">{t.contact.studio}</p>
         <address>{site.address.map((line) => <span>{line}</span>)}</address>
+        <a href={site.maps.link} class="link-underline" target="_blank" rel="noopener">{t.contact.directions}</a>
+      </div>
+      <div>
+        <p class="mute">{t.contact.hours}</p>
+        <dl class="hours">
+          {
+            hours.map((row) => (
+              <div>
+                <dt>{row.days}</dt>
+                <dd>{row.time}</dd>
+              </div>
+            ))
+          }
+        </dl>
       </div>
     </div>
 
@@ -50,11 +65,20 @@ const t = useTranslations(lang);
       <button type="submit" class="submit">{t.contact.form.submit}</button>
     </form>
   </section>
+
+  <section class="map wrap" data-reveal="media">
+    <iframe
+      src={site.maps.embed}
+      title={t.contact.mapTitle}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen></iframe>
+  </section>
 </Base>
 
 <style>
   .contact {
-    padding-bottom: var(--section);
+    padding-bottom: clamp(64px, 8vw, 120px);
     row-gap: 64px;
   }
 
@@ -74,6 +98,41 @@ const t = useTranslations(lang);
   address {
     display: grid;
     font-style: normal;
+  }
+
+  .hours {
+    display: grid;
+    gap: 4px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .details .hours div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .hours dd {
+    margin: 0;
+  }
+
+  .map {
+    padding-bottom: var(--section);
+  }
+
+  .map iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    min-height: 360px;
+    border: 0;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.6s;
+  }
+
+  .map iframe:hover {
+    filter: none;
   }
 
   .form {
