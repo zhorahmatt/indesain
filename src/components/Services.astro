@@ -1,0 +1,75 @@
+---
+import { getLang, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<section class="services section wrap">
+  <div class="grid">
+    <p class="label services-label">{t.services.label}</p>
+    <h2 class="serif statement services-title" data-reveal="lines">
+      {t.services.title}
+    </h2>
+  </div>
+
+  <div class="groups grid">
+    {
+      t.services.groups.map((group) => (
+        <div class="group">
+          <p class="small mute group-title">{group.group}</p>
+          <ul class="serif h3" data-reveal="fade" data-stagger>
+            {group.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .services-label {
+    grid-column: 1 / span 3;
+    padding-top: 0.6em;
+  }
+
+  .services-title {
+    grid-column: 4 / span 8;
+  }
+
+  .groups {
+    margin-top: clamp(80px, 10vw, 140px);
+    row-gap: 48px;
+  }
+
+  .group {
+    grid-column: span 3;
+  }
+
+  .group:first-child {
+    grid-column: 4 / span 3;
+  }
+
+  .group-title {
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .group li {
+    padding-block: 4px;
+  }
+
+  @media (max-width: 809px) {
+    .services-label,
+    .services-title,
+    .group,
+    .group:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .services-label {
+      margin-bottom: 24px;
+    }
+  }
+</style>

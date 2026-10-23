@@ -1,0 +1,100 @@
+---
+import Media from './Media.astro';
+import { site } from '../data/site';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<section class="hero dark" data-hero>
+  <div class="hero-media" data-hero-media>
+    <Media
+      video
+      src="https://videos.pexels.com/video-files/18531414/18531414-hd_1920_1080_60fps.mp4"
+      label="Hero loop, 16:9" alt={t.hero.videoAlt} eager class="fill" />
+    <div class="scrim"></div>
+  </div>
+
+  <div class="hero-content wrap grid">
+    <h1 class="serif display hero-title" data-reveal="lines" data-trigger="load" data-delay="0.2">
+      {t.hero.lines.map((line, i) => (i ? [<br />, line] : line))}
+    </h1>
+    <div class="hero-meta small" data-reveal="fade" data-delay="0.9">
+      <p>{t.tagline}</p>
+      <p class="mute">{site.city} · {site.coordinates}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100svh;
+    min-height: 560px;
+    overflow: hidden;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-media :global(.fill) {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-media :global(.placeholder) {
+    background: linear-gradient(160deg, #3b3a36, #1d1c1a);
+    color: rgb(255 255 255 / 0.4);
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0.25), transparent 30%, transparent 55%, rgb(0 0 0 / 0.45));
+  }
+
+  .hero-content {
+    position: relative;
+    height: 100%;
+    align-content: end;
+    padding-bottom: 32px;
+    row-gap: 32px;
+  }
+
+  .hero-title {
+    grid-column: 1 / span 9;
+  }
+
+  .hero-meta {
+    grid-column: 10 / span 3;
+    align-self: end;
+    justify-self: end;
+    text-align: right;
+  }
+
+  @media (max-width: 809px) {
+    .hero-title,
+    .hero-meta {
+      grid-column: 1 / -1;
+      justify-self: start;
+      text-align: left;
+    }
+  }
+</style>
+
+<script>
+  import { gsap, reduceMotion } from '../scripts/motion';
+
+  const media = document.querySelector('[data-hero-media]');
+  if (media && !reduceMotion) {
+    gsap.from(media, { scale: 1.12, duration: 2.4, ease: 'expo.out' });
+    gsap.to(media, {
+      yPercent: 18,
+      ease: 'none',
+      scrollTrigger: { trigger: '[data-hero]', start: 'top top', end: 'bottom top', scrub: true },
+    });
+  }
+</script>

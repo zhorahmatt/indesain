@@ -1,0 +1,141 @@
+---
+import { getLang, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const testimonials = t.testimonials.items;
+
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+<section class="quotes section stone" data-quotes>
+  <div class="wrap grid">
+    <div class="quote-meta small">
+      <p class="mute">{t.testimonials.label}</p>
+      <p class="counter">
+        <span data-quote-index>01</span><span class="mute"> / {pad(testimonials.length)}</span>
+      </p>
+      <div class="controls">
+        <button data-quote-prev aria-label={t.testimonials.prev}>←</button>
+        <button data-quote-next aria-label={t.testimonials.next}>→</button>
+      </div>
+    </div>
+
+    <div class="quote-stage" aria-live="polite">
+      {
+        testimonials.map((t, i) => (
+          <figure class="quote" data-quote hidden={i !== 0}>
+            <blockquote class="serif statement">“{t.quote}”</blockquote>
+            <figcaption class="small">
+              {t.name}
+              <span class="mute"> · {t.context}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .quote-meta {
+    grid-column: 1 / span 3;
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding-top: 0.6em;
+  }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .controls button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .controls button:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .quote-stage {
+    grid-column: 4 / span 9;
+    display: grid;
+  }
+
+  .quote {
+    grid-area: 1 / 1;
+    display: grid;
+    gap: 32px;
+  }
+
+  .quote[hidden] {
+    display: grid;
+    visibility: hidden;
+  }
+
+  @media (max-width: 809px) {
+    .quote-meta,
+    .quote-stage {
+      grid-column: 1 / -1;
+    }
+
+    .quote-meta {
+      margin-bottom: 32px;
+    }
+  }
+</style>
+
+<script>
+  import { gsap, reduceMotion } from '../scripts/motion';
+
+  const root = document.querySelector<HTMLElement>('[data-quotes]');
+  if (root) {
+    const quotes = Array.from(root.querySelectorAll<HTMLElement>('[data-quote]'));
+    const indexEl = root.querySelector('[data-quote-index]');
+    let current = 0;
+    let timer: number | undefined;
+
+    const show = (next: number) => {
+      next = (next + quotes.length) % quotes.length;
+      if (next === current) return;
+      const from = quotes[current];
+      const to = quotes[next];
+      current = next;
+      if (indexEl) indexEl.textContent = String(next + 1).padStart(2, '0');
+
+      if (reduceMotion) {
+        from.hidden = true;
+        to.hidden = false;
+        return;
+      }
+      gsap.to(from, {
+        opacity: 0,
+        y: -16,
+        duration: 0.5,
+        ease: 'power2.in',
+        onComplete: () => {
+          from.hidden = true;
+        },
+      });
+      to.hidden = false;
+      gsap.fromTo(to, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1, delay: 0.4, ease: 'expo.out' });
+    };
+
+    const restart = () => {
+      window.clearInterval(timer);
+      timer = window.setInterval(() => show(current + 1), 7000);
+    };
+
+    root.querySelector('[data-quote-prev]')?.addEventListener('click', () => (show(current - 1), restart()));
+    root.querySelector('[data-quote-next]')?.addEventListener('click', () => (show(current + 1), restart()));
+    if (!reduceMotion) restart();
+  }
+</script>

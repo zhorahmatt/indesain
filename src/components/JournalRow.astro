@@ -1,0 +1,72 @@
+---
+import JournalCard from './JournalCard.astro';
+import SectionHead from './SectionHead.astro';
+import { getLang, getPosts, localizePath, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const posts = await getPosts(lang);
+---
+
+<section class="journal section">
+  <SectionHead title={t.journal.title} count={posts.length} link={{ label: t.journal.all, href: localizePath('/journal', lang) }} />
+  <div class="rail" data-rail data-reveal="fade" data-stagger>
+    {posts.map((post) => <JournalCard post={post} class="rail-item" />)}
+  </div>
+</section>
+
+<style>
+  .rail {
+    display: flex;
+    gap: var(--gap);
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail.dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+  }
+
+  .rail :global(.rail-item) {
+    flex: 0 0 clamp(260px, 28vw, 420px);
+    scroll-snap-align: start;
+  }
+</style>
+
+<script>
+  // Click-and-drag scrolling for mouse users; touch uses native scrolling.
+  const rail = document.querySelector<HTMLElement>('[data-rail]');
+  if (rail) {
+    let startX = 0;
+    let startScroll = 0;
+    let moved = false;
+
+    rail.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      startX = e.clientX;
+      startScroll = rail.scrollLeft;
+      moved = false;
+      rail.classList.add('dragging');
+      rail.setPointerCapture(e.pointerId);
+    });
+    rail.addEventListener('pointermove', (e) => {
+      if (!rail.classList.contains('dragging')) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      rail.scrollLeft = startScroll - dx;
+    });
+    const end = () => rail.classList.remove('dragging');
+    rail.addEventListener('pointerup', end);
+    rail.addEventListener('pointercancel', end);
+    rail.addEventListener('click', (e) => moved && e.preventDefault(), true);
+  }
+</script>

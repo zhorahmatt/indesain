@@ -1,0 +1,89 @@
+---
+import { getLang, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<section class="process section dark">
+  <div class="wrap grid content">
+    <p class="label process-label">{t.process.label}</p>
+    <h2 class="serif statement process-title" data-reveal="lines">
+      {t.process.title}
+    </h2>
+  </div>
+
+  <ol class="steps wrap content">
+    {
+      t.process.steps.map((step, i) => (
+        <li class="step grid" data-reveal="fade">
+          <span class="small mute num">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="serif h2 step-title">{step.title}</h3>
+          <p class="step-body">{step.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .process {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .process-label {
+    grid-column: 1 / span 3;
+    padding-top: 0.6em;
+  }
+
+  .process-title {
+    grid-column: 4 / span 8;
+  }
+
+  .steps {
+    margin-top: clamp(80px, 10vw, 160px);
+  }
+
+  .step {
+    padding-block: 28px 40px;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+  }
+
+  .num {
+    grid-column: 1 / span 3;
+  }
+
+  .step-title {
+    grid-column: 4 / span 4;
+  }
+
+  .step-body {
+    grid-column: 9 / span 4;
+    color: var(--mute);
+  }
+
+  @media (max-width: 809px) {
+    .process-label,
+    .process-title,
+    .num,
+    .step-title,
+    .step-body {
+      grid-column: 1 / -1;
+    }
+
+    .process-label {
+      margin-bottom: 24px;
+    }
+
+    .step {
+      row-gap: 12px;
+    }
+  }
+</style>

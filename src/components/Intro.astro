@@ -1,0 +1,74 @@
+---
+import { stats } from '../data/site';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<section class="intro section wrap">
+  <div class="grid">
+    <p class="label intro-label">{t.intro.label}</p>
+    <p class="serif statement intro-text" data-reveal="words">
+      {t.intro.statement}
+    </p>
+  </div>
+
+  <ul class="stats grid">
+    {
+      stats.map((stat, i) => (
+        <li class="stat" data-reveal="fade">
+          <p class="serif stat-value">
+            <span data-count={stat.value}>{stat.value}</span>
+            {stat.suffix}
+          </p>
+          <p class="small mute">{t.intro.stats[i]}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .intro-label {
+    grid-column: 1 / span 3;
+    padding-top: 0.6em;
+  }
+
+  .intro-text {
+    grid-column: 4 / span 9;
+  }
+
+  .stats {
+    margin-top: clamp(80px, 10vw, 160px);
+    row-gap: 40px;
+  }
+
+  .stat {
+    grid-column: span 3;
+    display: grid;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .stat-value {
+    font-size: clamp(48px, 6vw, 96px);
+    letter-spacing: -0.05em;
+  }
+
+  @media (max-width: 809px) {
+    .intro-label,
+    .intro-text {
+      grid-column: 1 / -1;
+    }
+
+    .intro-label {
+      margin-bottom: 24px;
+    }
+
+    .stat {
+      grid-column: span 6;
+    }
+  }
+</style>
