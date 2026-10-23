@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getLang, getProjects, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const projects = await getProjects(lang);
+const categories = ['All', ...new Set(projects.map((p) => p.data.category))] as const;
+---
+
+<Base title={t.work.pageLabel}>
+  <PageHeader label={t.work.pageLabel} title={t.work.pageTitle} />
+
+  <div class="filters wrap small" role="toolbar" aria-label={t.work.filterLabel}>
+    {
+      categories.map((c, i) => (
+        <button data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'}>
+          {c === 'All' ? t.work.filterAll : t.work.categories[c]}
+        </button>
+      ))
+    }
+  </div>
+
+  <section class="list wrap grid">
+    {
+      projects.map((project) => (
+        <div class="item" data-category={project.data.category}>
+          <ProjectCard project={project} />
+        </div>
+      ))
+    }
+  </section>
+</Base>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 48px;
+  }
+
+  .filters button {
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .filters [aria-pressed='true'] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .list {
+    row-gap: clamp(56px, 7vw, 112px);
+    padding-bottom: var(--section);
+    align-items: start;
+  }
+
+  .item {
+    grid-column: span 6;
+  }
+
+  .item:nth-child(4n + 2),
+  .item:nth-child(4n + 3) {
+    margin-top: 12%;
+  }
+
+  .item[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 809px) {
+    .item {
+      grid-column: 1 / -1;
+      margin-top: 0 !important;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from '../scripts/motion';
+
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const items = document.querySelectorAll<HTMLElement>('[data-category]');
+
+  buttons.forEach((button) =>
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      items.forEach((item) => {
+        item.hidden = filter !== 'All' && item.dataset.category !== filter;
+      });
+      ScrollTrigger.refresh();
+    }),
+  );
+</script>

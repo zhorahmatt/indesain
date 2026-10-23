@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getLang, localizePath, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<Base title={t.notFound.title} cta={false}>
+  <PageHeader label={t.notFound.label} title={t.notFound.title}>
+    <a href={localizePath('/', lang)} class="small link-underline back">{t.notFound.back}</a>
+  </PageHeader>
+  <div class="spacer"></div>
+</Base>
+
+<style>
+  .back {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .spacer {
+    height: 20vh;
+  }
+</style>

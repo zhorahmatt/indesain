@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../data/site';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<Base title={t.contact.label} cta={false}>
+  <PageHeader label={t.contact.label} title={t.contact.title} />
+
+  <section class="contact wrap grid">
+    <div class="details small">
+      <div>
+        <p class="mute">{t.contact.email}</p>
+        <a href={`mailto:${site.email}`} class="serif h3 link-underline">{site.email}</a>
+      </div>
+      <div>
+        <p class="mute">{t.contact.phone}</p>
+        <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="link-underline">{site.phone}</a>
+      </div>
+      <div>
+        <p class="mute">{t.contact.studio}</p>
+        <address>{site.address.map((line) => <span>{line}</span>)}</address>
+      </div>
+    </div>
+
+    <!-- Point `action` at your form backend (Formspree, Netlify Forms, an API route…). -->
+    <form class="form" method="post" action="#" data-reveal="fade" data-stagger>
+      <label>
+        <span class="small mute">{t.contact.form.name}</span>
+        <input name="name" required autocomplete="name" />
+      </label>
+      <label>
+        <span class="small mute">{t.contact.form.email}</span>
+        <input name="email" type="email" required autocomplete="email" />
+      </label>
+      <label>
+        <span class="small mute">{t.contact.form.type}</span>
+        <select name="type">
+          {t.contact.form.types.map((type) => <option>{type}</option>)}
+        </select>
+      </label>
+      <label>
+        <span class="small mute">{t.contact.form.message}</span>
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+      <button type="submit" class="submit">{t.contact.form.submit}</button>
+    </form>
+  </section>
+</Base>
+
+<style>
+  .contact {
+    padding-bottom: var(--section);
+    row-gap: 64px;
+  }
+
+  .details {
+    grid-column: 1 / span 4;
+    display: grid;
+    align-content: start;
+    gap: 32px;
+  }
+
+  .details div {
+    display: grid;
+    gap: 6px;
+    justify-items: start;
+  }
+
+  address {
+    display: grid;
+    font-style: normal;
+  }
+
+  .form {
+    grid-column: 6 / span 7;
+    display: grid;
+    gap: 28px;
+  }
+
+  label {
+    display: grid;
+    gap: 8px;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    font-size: 18px;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 8px 0;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--ink);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .submit {
+    justify-self: start;
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 999px;
+    transition: opacity 0.3s;
+  }
+
+  .submit:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 809px) {
+    .details,
+    .form {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

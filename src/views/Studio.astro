@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Media from '../components/Media.astro';
+import Intro from '../components/Intro.astro';
+import Process from '../components/Process.astro';
+import Services from '../components/Services.astro';
+import { getLang, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+// Photos are free Unsplash stand-ins (swap for /media/... paths); names and roles live in src/i18n/ui.ts.
+const photos = [
+  'https://images.unsplash.com/photo-1587397845856-e6cf49176c70?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1581841064838-a470c740e8ee?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1672825464495-f08d8efb81ad?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1514929781313-76fcbb2136b6?auto=format&fit=crop&w=800&q=80',
+];
+---
+
+<Base title={t.studio.label}>
+  <PageHeader label={t.studio.label} title={t.studio.title} />
+
+  <div class="wrap" data-reveal="media">
+    <Media src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2400&q=80" label="Studio photo · 21:9" alt={t.studio.photoAlt} ratio="21 / 9" parallax eager />
+  </div>
+
+  <Intro />
+  <Process />
+  <Services />
+
+  <section class="team section wrap">
+    <h2 class="serif h2 team-title" data-reveal="lines">{t.studio.people}</h2>
+    <ul class="grid people" data-reveal="fade" data-stagger>
+      {
+        t.studio.team.map((person, i) => (
+          <li class="person">
+            <Media src={photos[i]} alt={person.name} label="Portrait · 4:5" ratio="4 / 5" />
+            <p class="serif h3">{person.name}</p>
+            <p class="small mute">{person.role}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .team-title {
+    margin-bottom: 48px;
+  }
+
+  .people {
+    row-gap: 48px;
+  }
+
+  .person {
+    grid-column: span 3;
+    display: grid;
+    gap: 8px;
+  }
+
+  .person :global(.media) {
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 809px) {
+    .person {
+      grid-column: span 6;
+    }
+  }
+</style>

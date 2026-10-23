@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import JournalCard from '../components/JournalCard.astro';
+import { getLang, getPosts, useTranslations } from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const posts = await getPosts(lang);
+---
+
+<Base title={t.journal.pageLabel}>
+  <PageHeader label={t.journal.pageLabel} title={t.journal.pageTitle} />
+  <section class="posts wrap grid" data-reveal="fade" data-stagger>
+    {posts.map((post) => <JournalCard post={post} class="post" />)}
+  </section>
+</Base>
+
+<style>
+  .posts {
+    row-gap: 72px;
+    padding-bottom: var(--section);
+  }
+
+  .posts :global(.post) {
+    grid-column: span 4;
+  }
+
+  @media (max-width: 1199px) {
+    .posts :global(.post) {
+      grid-column: span 6;
+    }
+  }
+
+  @media (max-width: 809px) {
+    .posts :global(.post) {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

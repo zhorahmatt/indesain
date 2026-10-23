@@ -1,0 +1,166 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Media from '../components/Media.astro';
+
+import { getLang, localizePath, slugOf, useTranslations } from '../i18n/utils';
+
+interface Props {
+  project: CollectionEntry<'work'>;
+  next: CollectionEntry<'work'>;
+}
+
+const { project, next } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+const { title, category, location, year, area, scope, summary, cover, gallery } = project.data;
+const { Content } = await render(project);
+
+const facts = [
+  { label: t.work.facts.type, value: t.work.categories[category] },
+  { label: t.work.facts.location, value: location },
+  { label: t.work.facts.year, value: year },
+  { label: t.work.facts.area, value: area },
+  { label: t.work.facts.scope, value: scope.join(', ') },
+].filter((f) => f.value);
+---
+
+<Base title={title} description={summary}>
+  <section class="cover dark">
+    <Media src={cover} alt={title} label="Project cover · 16:9" eager parallax class="cover-media" />
+    <div class="cover-content wrap">
+      <p class="small">{t.work.categories[category]} · {location}</p>
+      <h1 class="serif display" data-reveal="lines" data-trigger="load" data-delay="0.2">{title}</h1>
+    </div>
+  </section>
+
+  <section class="overview section wrap grid">
+    <dl class="facts small">
+      {
+        facts.map((f) => (
+          <div>
+            <dt class="mute">{f.label}</dt>
+            <dd>{f.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <div class="story">
+      <p class="serif statement" data-reveal="lines">{summary}</p>
+      <div class="prose" data-reveal="fade"><Content /></div>
+    </div>
+  </section>
+
+  <section class="gallery wrap grid">
+    {
+      gallery.map((src, i) => (
+        <div class={`shot shot-${(i % 4) + 1}`} data-reveal="media">
+          <Media
+            src={src}
+            alt={`${title} — ${t.work.view} ${i + 1}`}
+            label={`Gallery ${i + 1}`}
+            ratio={i % 4 === 0 || i % 4 === 3 ? '3 / 2' : '4 / 5'}
+            parallax
+          />
+        </div>
+      ))
+    }
+  </section>
+
+  <a href={localizePath(`/work/${slugOf(next)}`, lang)} class="next section wrap">
+    <p class="label">{t.work.next}</p>
+    <p class="serif display next-title">{next.data.title} →</p>
+  </a>
+</Base>
+
+<style>
+  .cover {
+    position: relative;
+    height: 100svh;
+    min-height: 560px;
+    overflow: hidden;
+  }
+
+  .cover :global(.cover-media) {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cover :global(.placeholder) {
+    background: linear-gradient(160deg, #3b3a36, #1d1c1a);
+    color: rgb(255 255 255 / 0.4);
+  }
+
+  .cover-content {
+    position: absolute;
+    inset: auto 0 0;
+    display: grid;
+    gap: 16px;
+    padding-bottom: 32px;
+  }
+
+  .facts {
+    grid-column: 1 / span 3;
+    display: grid;
+    align-content: start;
+    gap: 16px;
+  }
+
+  .facts div {
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+
+  .facts dd {
+    margin: 4px 0 0;
+  }
+
+  .story {
+    grid-column: 5 / span 8;
+    display: grid;
+    gap: 48px;
+  }
+
+  .prose {
+    max-width: 60ch;
+    display: grid;
+    gap: 1em;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .gallery {
+    row-gap: var(--gap);
+  }
+
+  .shot-1 { grid-column: 1 / -1; }
+  .shot-2 { grid-column: 1 / span 6; }
+  .shot-3 { grid-column: 7 / span 6; }
+  .shot-4 { grid-column: 3 / span 8; }
+
+  .next {
+    display: grid;
+    gap: 16px;
+  }
+
+  .next-title {
+    transition: opacity 0.4s;
+  }
+
+  .next:hover .next-title {
+    opacity: 0.55;
+  }
+
+  @media (max-width: 809px) {
+    .facts,
+    .story,
+    .gallery > div {
+      grid-column: 1 / -1;
+    }
+
+    .story {
+      margin-top: 48px;
+    }
+  }
+</style>
