@@ -1,12 +1,12 @@
 ---
-title: Cahaya sebelum denah
-category: Proses
+title: "Kenapa kami selalu mulai dari survei lokasi"
+category: "Proses"
 date: 2026-08-12
-excerpt: Mengapa setiap proyek dimulai dengan satu hari di lokasi, mengamati bagaimana matahari bergerak melewati ruang.
+excerpt: "Gambar dan foto tidak pernah cukup. Ini hal-hal yang baru kelihatan setelah kami datang langsung."
 cover: https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=1600&q=80
 ---
-Artikel sementara. Tulis tentang cara studio membaca lokasi sebelum mulai merancang.
+Tulis di sini apa saja yang kami cek saat survei: arah matahari, sirkulasi udara, kondisi dinding dan lantai, sampai akses untuk tukang.
 
-## Subjudul kedua
+## Yang sering terlewat
 
-Teks sementara lainnya untuk isi artikel.
+Ceritakan contoh temuan di lapangan yang mengubah desain.

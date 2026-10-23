@@ -1,12 +1,12 @@
 ---
-title: Light before layout
-category: Process
+title: "Why we always start with a site visit"
+category: "Process"
 date: 2026-08-12
-excerpt: Why every project starts with a day on site, watching how the sun moves through the rooms.
+excerpt: "Drawings and photos are never enough. Here is what only shows up once we are standing in the room."
 cover: https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=1600&q=80
 ---
-Placeholder article. Write about how the studio reads a site before designing.
+Write here about what we check on a site visit: where the sun comes in, airflow, the condition of walls and floors, and access for builders.
 
-## A second heading
+## What usually gets missed
 
-More placeholder copy for the article body.
+Share an example of something found on site that changed the design.

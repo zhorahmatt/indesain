@@ -1,11 +1,11 @@
 ---
-title: Kopi Dharmawangsa
-category: Retail
+title: "Kopi Dharmawangsa"
+category: "Retail"
 location: Jakarta
 year: 2023
 area: 140 m²
-scope: [Concept Design, Lighting, Joinery]
-summary: A neighbourhood coffee bar with one long counter, a terracotta floor and a wall of reclaimed timber.
+scope: [Concept Design, Lighting, Custom Furniture]
+summary: "A neighbourhood coffee shop in Dharmawangsa with one long bar, terracotta floors and a wall of reclaimed timber."
 order: 5
 format: landscape
 cover: https://images.unsplash.com/photo-1625585598750-3535fe40efb3?auto=format&fit=crop&w=2400&q=80
@@ -15,4 +15,4 @@ gallery:
   - https://images.unsplash.com/photo-1532204182725-d0f67855ac87?auto=format&fit=crop&w=1600&q=80
   - https://images.unsplash.com/photo-1706074797611-a02f9ed06439?auto=format&fit=crop&w=1600&q=80
 ---
-Placeholder project text.
+Write here about the concept, who the shop is for, and how customers move from the door to the bar.

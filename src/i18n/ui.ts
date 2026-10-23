@@ -5,135 +5,135 @@ const id = {
   langName: 'Bahasa Indonesia',
   tagline: 'Desain Interior & Arsitektur',
   description:
-    'indesain adalah studio desain interior dan arsitektur yang menciptakan hunian, ruang kerja, dan ruang hospitalitas dengan perhatian pada cahaya, material, dan keseharian.',
+    'indesain adalah studio desain interior di Jakarta. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari konsep sampai serah terima.',
 
   nav: { home: 'Beranda', work: 'Proyek', studio: 'Studio', journal: 'Jurnal', contact: 'Kontak' },
   menu: { open: 'Menu', close: 'Tutup', primary: 'Navigasi utama', language: 'Bahasa' },
 
-  hero: { lines: ['Ruang yang', 'dibentuk oleh', 'cara Anda hidup.'], videoAlt: 'Penelusuran interior' },
+  hero: { lines: ['Nyaman dihuni,', 'bukan cuma', 'enak dilihat.'], videoAlt: 'Video interior rumah' },
 
   intro: {
-    label: '(Studio)',
+    label: '(Tentang kami)',
     statement:
-      'Kami merancang interior yang terasa tenang sejak hari pertama dan makin baik di hari keseribu — material yang jujur, cahaya yang lapang, dan detail yang bekerja dengan tenang.',
-    stats: ['Tahun berkarya', 'Ruang terselesaikan', 'Desainer & perajin', 'Kota tempat kami berkarya'],
+      'Kami studio desain interior di Jakarta. Sudah sepuluh tahun kami merancang rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
+    stats: ['Tahun berpengalaman', 'Proyek selesai', 'Orang di tim kami', 'Kota proyek'],
   },
 
   work: {
     selected: 'Proyek pilihan',
-    all: 'Semua proyek',
+    all: 'Lihat semua proyek',
     pageLabel: 'Proyek',
-    pageTitle: 'Ruang yang telah kami bentuk',
+    pageTitle: 'Beberapa proyek yang pernah kami kerjakan',
     filterAll: 'Semua',
-    filterLabel: 'Saring proyek',
-    facts: { type: 'Tipe', location: 'Lokasi', year: 'Tahun', area: 'Luas', scope: 'Lingkup' },
+    filterLabel: 'Filter proyek',
+    facts: { type: 'Jenis', location: 'Lokasi', year: 'Tahun', area: 'Luas', scope: 'Lingkup kerja' },
     next: '(Proyek berikutnya)',
-    view: 'tampilan',
-    categories: { Residential: 'Hunian', Hospitality: 'Hospitalitas', Workplace: 'Ruang Kerja', Retail: 'Ritel' },
+    view: 'foto',
+    categories: { Residential: 'Rumah Tinggal', Hospitality: 'Hotel & Villa', Workplace: 'Kantor', Retail: 'Komersial' },
   },
 
   process: {
-    label: '(Cara kami bekerja)',
-    title: 'Empat tahap, satu tim, dari kunjungan pertama hingga ruang yang siap dihuni.',
+    label: '(Cara kerja)',
+    title: 'Satu tim yang sama, dari survei pertama sampai serah terima.',
     steps: [
       {
-        title: 'Mendengar',
-        body: 'Kami meluangkan waktu di lokasi dan bersama orang-orang yang menggunakannya — memetakan rutinitas, cahaya, dan hal-hal yang layak dipertahankan sebelum menarik satu garis pun.',
+        title: 'Survei & brief',
+        body: 'Kami datang ke lokasi, mengukur, lalu berdiskusi soal kebutuhan, kebiasaan, dan anggaran Anda. Dari situ kami susun brief yang jelas.',
       },
       {
-        title: 'Membentuk',
-        body: 'Tata ruang, volume, dan palet material berkembang bersama sebagai satu gagasan, diuji lewat maket, sampel, dan diskusi yang jujur tentang anggaran.',
+        title: 'Konsep & desain',
+        body: 'Kami siapkan layout, moodboard, dan visual 3D, lengkap dengan RAB. Revisi kami kerjakan bersama Anda sampai desainnya terasa pas.',
       },
       {
-        title: 'Merinci',
-        body: 'Joinery, pencahayaan, dan perabot khusus digambar hingga milimeter, lalu diadakan dan dibuat bersama perajin yang telah kami percaya selama bertahun-tahun.',
+        title: 'Gambar kerja & produksi',
+        body: 'Desain final kami jadikan gambar kerja yang detail. Furnitur custom dan material dikerjakan bersama workshop dan vendor langganan kami.',
       },
       {
-        title: 'Mewujudkan',
-        body: 'Kami mengoordinasikan pembangunan di lokasi hingga ruang tertata sempurna, sehingga ruang yang Anda tempati adalah ruang yang kami janjikan.',
+        title: 'Pengerjaan & serah terima',
+        body: 'Tim kami rutin mengawasi pekerjaan di lapangan sampai ruangan siap dipakai dan kuncinya kami serahkan ke Anda.',
       },
     ],
   },
 
-  showreel: { caption: 'Di dalam studio', alt: 'Video profil studio' },
+  showreel: { caption: 'Intip studio kami', alt: 'Video profil studio' },
 
   services: {
     label: '(Layanan)',
-    title: 'Satu studio untuk seluruh proyek, dari denah pertama hingga objek terakhir di rak.',
+    title: 'Bisa mulai dari konsultasi saja, atau kami kerjakan dari awal sampai beres.',
     groups: [
       {
         group: 'Desain',
-        items: ['Arsitektur Interior', 'Perencanaan Ruang', 'Desain Konsep', 'Desain Pencahayaan', 'Warna & Material'],
+        items: ['Desain interior', 'Konsultasi desain', 'Layout & tata ruang', 'Visual 3D', 'Desain pencahayaan'],
       },
       {
-        group: 'Detail',
-        items: ['Joinery Khusus', 'Desain Furnitur', 'Dapur & Kamar Mandi', 'Kurasi Seni', 'Penataan'],
+        group: 'Produksi',
+        items: ['Furnitur custom', 'Kitchen set', 'Lemari & built-in', 'Pemilihan material', 'Styling & dekorasi'],
       },
       {
         group: 'Pelaksanaan',
-        items: ['Pengadaan', 'Tender Kontraktor', 'Pengawasan Lapangan', 'Proyek Turnkey', 'Layanan Purnajual'],
+        items: ['Rencana anggaran (RAB)', 'Pengadaan barang', 'Pengawasan proyek', 'Renovasi', 'Paket terima beres'],
       },
     ],
   },
 
   testimonials: {
-    label: '(Kata mereka)',
+    label: '(Kata klien)',
     prev: 'Testimoni sebelumnya',
     next: 'Testimoni berikutnya',
     items: [
       {
         quote:
-          'Mereka lebih banyak mendengar daripada berbicara, dan kini rumah kami sesuai dengan cara kami benar-benar hidup — pagi yang lebih tenang, cahaya yang lebih baik, tanpa ada yang sia-sia.',
-        name: 'Klien pribadi',
-        context: 'Hunian, Jakarta',
+          'Dari awal mereka banyak bertanya soal kebiasaan kami di rumah. Hasilnya bukan cuma bagus dilihat, tapi memang enak dipakai sehari-hari.',
+        name: 'Klien rumah tinggal',
+        context: 'Kemang, Jakarta',
       },
       {
         quote:
-          'Dari kunjungan lokasi pertama hingga bantal terakhir, tim ini memikul seluruh proyek. Tamu kami merasakan ketenangannya sebelum menyadari desainnya.',
-        name: 'Mitra hospitalitas',
-        context: 'Hotel butik, Bali',
+          'Timnya rapi dan gampang diajak komunikasi. Villa kami bisa dibuka sesuai jadwal, padahal waktunya mepet sekali.',
+        name: 'Pemilik villa',
+        context: 'Uluwatu, Bali',
       },
       {
         quote:
-          'Studio langka yang memahami gambar kerja sekaligus lapangan. Setiap detail yang dijanjikan hadir persis seperti yang digambar.',
-        name: 'Pengembang',
-        context: 'Ruang kerja, Surabaya',
+          'Yang paling saya hargai, gambar kerjanya detail dan hasil di lapangan sesuai gambar. Jarang ketemu yang seperti ini.',
+        name: 'Developer properti',
+        context: 'Surabaya',
       },
     ],
   },
 
   journal: {
     title: 'Jurnal',
-    all: 'Semua catatan',
-    back: '← Semua catatan',
+    all: 'Semua artikel',
+    back: '← Semua artikel',
     pageLabel: 'Jurnal',
-    pageTitle: 'Catatan dari studio',
+    pageTitle: 'Cerita dan tips dari studio',
   },
 
   cta: {
     label: '(Mulai proyek)',
-    title: 'Punya ruang yang ingin diwujudkan? Mari kita telusuri bersama.',
-    button: 'Kirim pertanyaan →',
+    title: 'Punya rencana renovasi atau bangun baru? Ceritakan ke kami.',
+    button: 'Hubungi kami →',
   },
 
-  footer: { pages: 'Halaman', follow: 'Ikuti', studio: 'Studio' },
+  footer: { pages: 'Halaman', follow: 'Ikuti kami', studio: 'Studio' },
 
   studio: {
     label: 'Studio',
-    title: 'Tim kecil dengan perhatian yang panjang',
-    photoAlt: 'Studio indesain',
-    people: 'Orang-orang di balik studio',
+    title: 'Studio kecil, dengan tim yang turun langsung ke lapangan',
+    photoAlt: 'Suasana studio indesain',
+    people: 'Tim kami',
     team: [
-      { name: 'Nama Pendiri', role: 'Prinsipal, Arsitek Interior' },
-      { name: 'Nama Mitra', role: 'Direktur Desain' },
-      { name: 'Anggota Tim', role: 'Desainer Senior' },
-      { name: 'Anggota Tim', role: 'Manajer Proyek' },
+      { name: 'Nama Pendiri', role: 'Pendiri & Principal Designer' },
+      { name: 'Nama Partner', role: 'Design Director' },
+      { name: 'Nama Anggota', role: 'Senior Interior Designer' },
+      { name: 'Nama Anggota', role: 'Project Manager' },
     ],
   },
 
   contact: {
     label: 'Kontak',
-    title: 'Ceritakan tentang ruang Anda',
+    title: 'Ceritakan proyek Anda',
     email: 'Email',
     phone: 'Telepon',
     studio: 'Studio',
@@ -141,13 +141,13 @@ const id = {
       name: 'Nama',
       email: 'Email',
       type: 'Jenis proyek',
-      message: 'Tentang proyek',
-      submit: 'Kirim pertanyaan →',
-      types: ['Hunian', 'Hospitalitas', 'Ruang Kerja', 'Ritel', 'Lainnya'],
+      message: 'Ceritakan sedikit tentang proyeknya',
+      submit: 'Kirim pesan →',
+      types: ['Rumah tinggal', 'Apartemen', 'Kantor', 'Hotel & villa', 'Kafe & retail', 'Lainnya'],
     },
   },
 
-  notFound: { label: '404', title: 'Ruangan ini tidak ada', back: '← Kembali ke beranda' },
+  notFound: { label: '404', title: 'Halaman tidak ditemukan', back: '← Kembali ke beranda' },
 
   dateLocale: 'id-ID',
 };
@@ -156,135 +156,134 @@ const en: typeof id = {
   langName: 'English',
   tagline: 'Interior Design & Architecture',
   description:
-    'indesain is an interior design and architecture studio creating homes, workplaces and hospitality spaces with care for light, material and daily life.',
+    'indesain is an interior design studio in Jakarta. We design homes, offices, hotels and cafés, from first concept to handover.',
 
   nav: { home: 'Home', work: 'Projects', studio: 'Studio', journal: 'Journal', contact: 'Contact' },
-  menu: { open: 'Menu', close: 'Close', primary: 'Primary', language: 'Language' },
+  menu: { open: 'Menu', close: 'Close', primary: 'Main navigation', language: 'Language' },
 
-  hero: { lines: ['Rooms shaped', 'around how', 'you live.'], videoAlt: 'Interior walkthrough' },
+  hero: { lines: ['Made to be', 'lived in, not', 'just looked at.'], videoAlt: 'Interior video of a home' },
 
   intro: {
-    label: '(The studio)',
+    label: '(About us)',
     statement:
-      'We design interiors that feel calm on the first day and better on the thousandth — honest materials, generous light and details that quietly do their job.',
-    stats: ['Years in practice', 'Spaces delivered', 'Designers & makers', 'Cities we work in'],
+      "We're an interior design studio in Jakarta. For ten years we've designed homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
+    stats: ['Years of practice', 'Projects completed', 'People on the team', 'Cities'],
   },
 
   work: {
     selected: 'Selected projects',
-    all: 'All projects',
+    all: 'See all projects',
     pageLabel: 'Projects',
-    pageTitle: 'Spaces we have shaped',
+    pageTitle: "Some of the work we've done",
     filterAll: 'All',
     filterLabel: 'Filter projects',
-    facts: { type: 'Type', location: 'Location', year: 'Year', area: 'Area', scope: 'Scope' },
+    facts: { type: 'Type', location: 'Location', year: 'Year', area: 'Area', scope: 'Scope of work' },
     next: '(Next project)',
-    view: 'view',
-    categories: { Residential: 'Residential', Hospitality: 'Hospitality', Workplace: 'Workplace', Retail: 'Retail' },
+    view: 'photo',
+    categories: { Residential: 'Residential', Hospitality: 'Hotel & Villa', Workplace: 'Office', Retail: 'Commercial' },
   },
 
   process: {
     label: '(How we work)',
-    title: 'Four steps, one team, from the first visit to the final styled room.',
+    title: 'One team, from the first site visit to handover.',
     steps: [
       {
-        title: 'Listen',
-        body: 'We spend time in the space and with the people who use it, mapping routines, light and the things worth keeping before drawing a single line.',
+        title: 'Site visit & brief',
+        body: 'We visit the site, take measurements, and talk through your needs, routines and budget. From that we write a clear brief.',
       },
       {
-        title: 'Shape',
-        body: 'Layout, volume and a material palette develop together as one idea, tested through models, samples and honest conversations about budget.',
+        title: 'Concept & design',
+        body: 'We prepare layouts, a moodboard and 3D visuals, along with a cost estimate. We revise together until the design feels right.',
       },
       {
-        title: 'Detail',
-        body: 'Joinery, lighting and custom pieces are drawn to the millimetre, then sourced and made with craftspeople we have trusted for years.',
+        title: 'Drawings & production',
+        body: 'The final design becomes detailed construction drawings. Custom furniture and materials are made with workshops and suppliers we work with regularly.',
       },
       {
-        title: 'Deliver',
-        body: 'We coordinate the build on site through to the final styled room, so the space you move into is the space we promised.',
+        title: 'Build & handover',
+        body: 'Our team checks on site regularly until the space is ready to use and we hand you the keys.',
       },
     ],
   },
 
-  showreel: { caption: 'Inside the studio', alt: 'Studio showreel' },
+  showreel: { caption: 'A look inside the studio', alt: 'Studio video' },
 
   services: {
     label: '(Services)',
-    title: 'One studio for the whole project, from the first plan to the last object on the shelf.',
+    title: 'Start with a consultation, or let us handle everything from start to finish.',
     groups: [
       {
         group: 'Design',
-        items: ['Interior Architecture', 'Space Planning', 'Concept Design', 'Lighting Design', 'Colour & Material'],
+        items: ['Interior design', 'Design consultation', 'Space planning', '3D visuals', 'Lighting design'],
       },
       {
-        group: 'Detail',
-        items: ['Custom Joinery', 'Furniture Design', 'Kitchens & Baths', 'Art Curation', 'Styling'],
+        group: 'Production',
+        items: ['Custom furniture', 'Kitchens', 'Wardrobes & built-ins', 'Material selection', 'Styling & decor'],
       },
       {
         group: 'Delivery',
-        items: ['Procurement', 'Contractor Tender', 'Site Supervision', 'Turnkey Projects', 'Aftercare'],
+        items: ['Cost planning', 'Procurement', 'Project supervision', 'Renovation', 'Turnkey packages'],
       },
     ],
   },
 
   testimonials: {
-    label: '(Kind words)',
+    label: '(Client words)',
     prev: 'Previous testimonial',
     next: 'Next testimonial',
     items: [
       {
         quote:
-          'They listened more than they spoke, and the house now fits the way we actually live — quieter mornings, better light, nothing wasted.',
-        name: 'Private client',
-        context: 'Residence, Jakarta',
+          'From the start they asked a lot about how we live at home. The result looks good, and more importantly it works for us every day.',
+        name: 'Homeowner',
+        context: 'Kemang, Jakarta',
+      },
+      {
+        quote: 'The team was organised and easy to talk to. Our villa opened on schedule, even though the timeline was tight.',
+        name: 'Villa owner',
+        context: 'Uluwatu, Bali',
       },
       {
         quote:
-          'From the first site visit to the last cushion, the team carried the whole project. Our guests notice the calm before they notice the design.',
-        name: 'Hospitality partner',
-        context: 'Boutique hotel, Bali',
-      },
-      {
-        quote:
-          'A rare studio that understands both the drawing and the building site. Every detail we were promised arrived exactly as drawn.',
-        name: 'Developer',
-        context: 'Workplace, Surabaya',
+          "What I valued most is that the drawings were detailed and what got built matched them. That's not easy to find.",
+        name: 'Property developer',
+        context: 'Surabaya',
       },
     ],
   },
 
   journal: {
     title: 'Journal',
-    all: 'All notes',
-    back: '← All notes',
+    all: 'All articles',
+    back: '← All articles',
     pageLabel: 'Journal',
-    pageTitle: 'Notes from the studio',
+    pageTitle: 'Stories and tips from the studio',
   },
 
   cta: {
     label: '(Start a project)',
-    title: "Have a space in mind? Let's walk it together.",
-    button: 'Start an enquiry →',
+    title: 'Planning a renovation or a new build? Tell us about it.',
+    button: 'Get in touch →',
   },
 
-  footer: { pages: 'Pages', follow: 'Follow', studio: 'Studio' },
+  footer: { pages: 'Pages', follow: 'Follow us', studio: 'Studio' },
 
   studio: {
     label: 'Studio',
-    title: 'A small team with a long attention span',
-    photoAlt: 'The indesain studio',
-    people: 'The people',
+    title: "A small studio, with a team that's on site",
+    photoAlt: 'Inside the indesain studio',
+    people: 'Our team',
     team: [
-      { name: 'Founder Name', role: 'Principal, Interior Architect' },
+      { name: 'Founder Name', role: 'Founder & Principal Designer' },
       { name: 'Partner Name', role: 'Design Director' },
-      { name: 'Team Member', role: 'Senior Designer' },
+      { name: 'Team Member', role: 'Senior Interior Designer' },
       { name: 'Team Member', role: 'Project Manager' },
     ],
   },
 
   contact: {
     label: 'Contact',
-    title: 'Tell us about your space',
+    title: 'Tell us about your project',
     email: 'Email',
     phone: 'Phone',
     studio: 'Studio',
@@ -292,13 +291,13 @@ const en: typeof id = {
       name: 'Name',
       email: 'Email',
       type: 'Project type',
-      message: 'About the project',
-      submit: 'Send enquiry →',
-      types: ['Residential', 'Hospitality', 'Workplace', 'Retail', 'Other'],
+      message: 'A little about the project',
+      submit: 'Send message →',
+      types: ['House', 'Apartment', 'Office', 'Hotel & villa', 'Café & retail', 'Other'],
     },
   },
 
-  notFound: { label: '404', title: "This room doesn't exist", back: '← Back home' },
+  notFound: { label: '404', title: "We couldn't find that page", back: '← Back to home' },
 
   dateLocale: 'en-GB',
 };
