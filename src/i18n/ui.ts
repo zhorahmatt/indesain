@@ -20,7 +20,7 @@ const id = {
   intro: {
     label: '(Tentang kami)',
     statement:
-      'Kami studio arsitektur dan interior di Makassar yang juga menangani konstruksi dan renovasi. Sejak 2011, kami merancang dan membangun rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
+      'Lebih dari sekadar desain, kami mewujudkannya menjadi nyata. Kami adalah studio arsitektur, interior, dan konstruksi di Makassar yang telah dipercaya sejak 2011 menangani berbagai proyek, mulai dari hunian, kafe, hingga ruang hospitality secara menyeluruh.',
     stats: ['Tahun berpengalaman', 'Proyek selesai', 'Happy client', 'Kota proyek'],
   },
 
@@ -182,7 +182,7 @@ const en: typeof id = {
   intro: {
     label: '(About us)',
     statement:
-      "We're an architecture and interior studio in Makassar that also handles construction and renovation. Since 2011 we've designed and built homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
+      "More than design, we make it real. We're an architecture, interior and construction studio in Makassar, trusted since 2011 to deliver projects from homes and cafés to hospitality spaces, from start to finish.",
     stats: ['Years of practice', 'Projects completed', 'Happy clients', 'Cities'],
   },
 
