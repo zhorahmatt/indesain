@@ -21,7 +21,7 @@ const t = useTranslations(lang);
       {t.hero.lines.map((line, i) => (i ? [<br />, line] : line))}
     </h1>
     <div class="hero-meta small" data-reveal="fade" data-delay="0.9">
-      <p>{t.tagline}</p>
+      <p>{t.hero.services} {t.hero.since} {site.founded}</p>
       <p class="mute">{site.city} · {site.coordinates}</p>
     </div>
   </div>

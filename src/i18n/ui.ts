@@ -5,18 +5,23 @@ const id = {
   langName: 'Bahasa Indonesia',
   tagline: 'Desain Interior & Arsitektur',
   description:
-    'indesain adalah studio arsitektur dan desain interior di Makassar. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari konsep sampai serah terima.',
+    'indesain adalah studio arsitektur dan interior di Makassar yang juga menangani konstruksi dan renovasi. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari desain sampai serah terima.',
 
   nav: { home: 'Beranda', work: 'Karya', studio: 'Tim', journal: 'Cerita', contact: 'Hubungi' },
   menu: { open: 'Menu', close: 'Tutup', primary: 'Navigasi utama', language: 'Bahasa' },
 
-  hero: { lines: ['Nyaman dihuni,', 'bukan cuma', 'enak dilihat.'], videoAlt: 'Video interior rumah' },
+  hero: {
+    lines: ['Nyaman dihuni,', 'bukan cuma', 'enak dilihat.'],
+    services: 'Arsitektur · Interior · Konstruksi · Renovasi',
+    since: 'sejak',
+    videoAlt: 'Video interior rumah',
+  },
 
   intro: {
     label: '(Tentang kami)',
     statement:
-      'Kami studio arsitektur dan desain interior di Makassar. Sejak 2011, kami merancang rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
-    stats: ['Tahun berpengalaman', 'Proyek selesai', 'Orang di tim kami', 'Kota proyek'],
+      'Kami studio arsitektur dan interior di Makassar yang juga menangani konstruksi dan renovasi. Sejak 2011, kami merancang dan membangun rumah, kantor, hotel, dan kafe, lalu mengawalnya sampai kunci diserahkan.',
+    stats: ['Tahun berpengalaman', 'Proyek selesai', 'Happy client', 'Kota proyek'],
   },
 
   work: {
@@ -162,18 +167,23 @@ const en: typeof id = {
   langName: 'English',
   tagline: 'Interior Design & Architecture',
   description:
-    'indesain is an architecture and interior design studio in Makassar. We design homes, offices, hotels and cafés, from first concept to handover.',
+    'indesain is an architecture and interior studio in Makassar that also handles construction and renovation. We work on homes, offices, hotels and cafés, from design to handover.',
 
   nav: { home: 'Home', work: 'Work', studio: 'Team', journal: 'Story', contact: 'Connect' },
   menu: { open: 'Menu', close: 'Close', primary: 'Main navigation', language: 'Language' },
 
-  hero: { lines: ['Made to be', 'lived in, not', 'just looked at.'], videoAlt: 'Interior video of a home' },
+  hero: {
+    lines: ['Made to be', 'lived in, not', 'just looked at.'],
+    services: 'Architecture · Interiors · Construction · Renovation',
+    since: 'since',
+    videoAlt: 'Interior video of a home',
+  },
 
   intro: {
     label: '(About us)',
     statement:
-      "We're an architecture and interior design studio in Makassar. Since 2011 we've designed homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
-    stats: ['Years of practice', 'Projects completed', 'People on the team', 'Cities'],
+      "We're an architecture and interior studio in Makassar that also handles construction and renovation. Since 2011 we've designed and built homes, offices, hotels and cafés, and stayed with each one until the keys were handed over.",
+    stats: ['Years of practice', 'Projects completed', 'Happy clients', 'Cities'],
   },
 
   work: {

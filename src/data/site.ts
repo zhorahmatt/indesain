@@ -1,6 +1,6 @@
 // Brand details that don't change between languages.
 // Location, phone, hours and Instagram come from the studio's Google Maps listing.
-// `email` and the project/team counts in `stats` are still placeholders. Translatable copy lives in src/i18n/ui.ts.
+// `email` and the project count in `stats` are still placeholders. Translatable copy lives in src/i18n/ui.ts.
 
 export const site = {
   name: 'indesain',
@@ -38,7 +38,7 @@ export const site = {
 export const stats = [
   { value: new Date().getFullYear() - site.founded, suffix: '' },
   { value: 80, suffix: '+' },
-  { value: 18, suffix: '' },
+  { value: 70, suffix: '+' },
   { value: 10, suffix: '' },
 ];
 
