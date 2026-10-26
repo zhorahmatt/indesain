@@ -1,10 +1,10 @@
 ---
 import { navPaths, site } from '../data/site';
-import { getLang, langs, localizePath, unlocalizePath, useTranslations } from '../i18n/utils';
+import { getLang, langs, localizePath, pagePath, useTranslations } from '../i18n/utils';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
-const path = unlocalizePath(Astro.url.pathname);
+const path = pagePath(Astro.url.pathname);
 
 const items = navPaths.map((href) => ({
   label: t.nav[href.slice(1) as keyof typeof t.nav],

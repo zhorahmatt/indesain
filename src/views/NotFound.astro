@@ -7,7 +7,7 @@ const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 ---
 
-<Base title={t.notFound.title} cta={false}>
+<Base title={`${t.notFound.title} · indesain`} cta={false} noindex>
   <PageHeader label={t.notFound.label} title={t.notFound.title}>
     <a href={localizePath('/', lang)} class="small link-underline back">{t.notFound.back}</a>
   </PageHeader>

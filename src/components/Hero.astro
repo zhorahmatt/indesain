@@ -18,7 +18,7 @@ const t = useTranslations(lang);
 
   <div class="hero-content wrap grid">
     <h1 class="serif display hero-title" data-reveal="lines" data-trigger="load" data-delay="0.2">
-      {t.hero.lines.map((line, i) => (i ? [<br />, line] : line))}
+      {t.hero.lines.map((line, i) => (i ? [' ', <br />, line] : line))}
     </h1>
     <div class="hero-meta small" data-reveal="fade" data-delay="0.9">
       <p>{t.hero.services} {t.hero.since} {site.founded}</p>

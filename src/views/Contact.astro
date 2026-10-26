@@ -3,13 +3,20 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import { site } from '../data/site';
 import { getLang, openingHours, useTranslations } from '../i18n/utils';
+import { studioId } from '../lib/seo';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 const hours = openingHours(lang);
 ---
 
-<Base title={t.contact.label} cta={false}>
+<Base
+  title={t.seo.contact.title}
+  description={t.seo.contact.description}
+  pageType="ContactPage"
+  breadcrumbs={[{ name: t.nav.contact, path: '/contact' }]}
+  mainEntity={studioId(Astro.site!)}
+  cta={false}>
   <PageHeader label={t.contact.label} title={t.contact.title} />
 
   <section class="contact wrap grid">

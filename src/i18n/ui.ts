@@ -7,6 +7,35 @@ const id = {
   description:
     'indesain adalah studio arsitektur dan interior di Makassar yang juga menangani konstruksi dan renovasi. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari desain sampai serah terima.',
 
+  // Search titles (≤ 60 characters) and descriptions (≤ 160) per page.
+  seo: {
+    home: {
+      title: 'Jasa Arsitek, Interior & Kontraktor Makassar · indesain',
+      description:
+        'Studio arsitektur, desain interior, dan konstruksi di Makassar sejak 2011. Desain, bangun baru, dan renovasi rumah, kafe, kantor, hingga hotel.',
+    },
+    work: {
+      title: 'Portofolio Arsitektur & Desain Interior · indesain',
+      description:
+        'Proyek pilihan indesain: rumah tinggal, hotel dan villa, kantor, serta kafe yang kami rancang dan bangun, dari desain sampai serah terima.',
+    },
+    studio: {
+      title: 'Tim Arsitek & Desainer Interior di Makassar · indesain',
+      description:
+        'Kenali tim indesain dan cara kerja kami: survei lokasi, desain, gambar kerja, sampai pengawasan konstruksi dan serah terima di Makassar.',
+    },
+    journal: {
+      title: 'Tips Desain Interior & Renovasi Rumah · indesain',
+      description:
+        'Cerita dan tips dari studio indesain soal desain interior, renovasi rumah, pemilihan material, dan proyek yang pernah kami kerjakan.',
+    },
+    contact: {
+      title: 'Kontak & Lokasi Studio di Makassar · indesain',
+      description:
+        'Konsultasikan rencana bangun baru atau renovasi Anda dengan indesain. Datang ke studio kami di Rappocini, Makassar, atau hubungi lewat telepon.',
+    },
+  },
+
   nav: { home: 'Beranda', work: 'Karya', studio: 'Tim', journal: 'Cerita', contact: 'Hubungi' },
   menu: { open: 'Menu', close: 'Tutup', primary: 'Navigasi utama', language: 'Bahasa' },
 
@@ -108,6 +137,38 @@ const id = {
     ],
   },
 
+  // {tokens} are filled from src/data/site.ts so facts stay in one place (see faqItems in utils.ts).
+  faq: {
+    label: '(Tanya jawab)',
+    title: 'Yang sering ditanyakan',
+    items: [
+      {
+        q: 'Apa saja layanan indesain?',
+        a: 'Kami menangani arsitektur, desain interior, konstruksi, dan renovasi. Anda bisa mulai dari konsultasi desain saja, atau kami kerjakan semuanya dari desain sampai serah terima.',
+      },
+      {
+        q: 'Proyek seperti apa yang biasa dikerjakan?',
+        a: 'Rumah tinggal, apartemen, kantor, kafe dan tempat usaha, sampai hotel dan villa, baik bangun baru maupun renovasi.',
+      },
+      {
+        q: 'Di mana lokasi studio indesain?',
+        a: 'Studio kami ada di {address}. Jam buka: {hours}.',
+      },
+      {
+        q: 'Apakah indesain menerima proyek di luar Makassar?',
+        a: 'Bisa. Sejak {founded} kami sudah mengerjakan proyek di {cities} kota.',
+      },
+      {
+        q: 'Bagaimana alur kerjanya?',
+        a: 'Ada empat tahap: {steps}. Satu tim yang sama mendampingi dari awal sampai akhir.',
+      },
+      {
+        q: 'Bagaimana cara memulai proyek?',
+        a: 'Telepon kami di {phone}, kirim email ke {email}, atau isi formulir di halaman Hubungi. Setelah itu kami atur jadwal survei lokasi dan diskusi awal.',
+      },
+    ],
+  },
+
   journal: {
     title: 'Cerita',
     all: 'Semua cerita',
@@ -168,6 +229,34 @@ const en: typeof id = {
   tagline: 'Interior Design & Architecture',
   description:
     'indesain is an architecture and interior studio in Makassar that also handles construction and renovation. We work on homes, offices, hotels and cafés, from design to handover.',
+
+  seo: {
+    home: {
+      title: 'Architect, Interior Design & Builder in Makassar · indesain',
+      description:
+        'Architecture, interior design and construction studio in Makassar, Indonesia, since 2011. New builds and renovations for homes, cafés, offices and hotels.',
+    },
+    work: {
+      title: 'Architecture & Interior Design Projects · indesain',
+      description:
+        'Selected work by indesain: homes, hotels and villas, offices and cafés we designed and built, from the first sketch to handover.',
+    },
+    studio: {
+      title: 'Our Architects & Interior Designers in Makassar · indesain',
+      description:
+        'Meet the indesain team and how we work: site visit, design, construction drawings, then site supervision through to handover in Makassar.',
+    },
+    journal: {
+      title: 'Interior Design & Renovation Tips · indesain',
+      description:
+        'Stories and practical tips from the indesain studio on interior design, home renovation, materials and the projects behind them.',
+    },
+    contact: {
+      title: 'Contact & Studio Location in Makassar · indesain',
+      description:
+        'Talk to indesain about a new build or renovation. Visit our studio in Rappocini, Makassar, or reach us by phone or email.',
+    },
+  },
 
   nav: { home: 'Home', work: 'Work', studio: 'Team', journal: 'Story', contact: 'Connect' },
   menu: { open: 'Menu', close: 'Close', primary: 'Main navigation', language: 'Language' },
@@ -265,6 +354,37 @@ const en: typeof id = {
           "What I valued most is that the drawings were detailed and what got built matched them. That's not easy to find.",
         name: 'Property developer',
         context: 'Surabaya',
+      },
+    ],
+  },
+
+  faq: {
+    label: '(FAQ)',
+    title: 'Frequently asked questions',
+    items: [
+      {
+        q: 'What does indesain do?',
+        a: 'We handle architecture, interior design, construction and renovation. You can start with a design consultation only, or let us take care of everything from design to handover.',
+      },
+      {
+        q: 'What kinds of projects do you take on?',
+        a: 'Houses, apartments, offices, cafés and shops, through to hotels and villas, both new builds and renovations.',
+      },
+      {
+        q: 'Where is the indesain studio?',
+        a: 'Our studio is at {address}. Opening hours: {hours}.',
+      },
+      {
+        q: 'Do you take on projects outside Makassar?',
+        a: 'Yes. Since {founded} we have worked on projects in {cities} cities.',
+      },
+      {
+        q: 'How does the process work?',
+        a: 'There are four stages: {steps}. The same team stays with you from start to finish.',
+      },
+      {
+        q: 'How do I start a project?',
+        a: 'Call us on {phone}, email {email}, or fill in the form on the Connect page. We will then schedule a site visit and a first conversation.',
       },
     ],
   },

@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import Media from '../components/Media.astro';
 
 import { getLang, localizePath, slugOf, useTranslations } from '../i18n/utils';
+import { inLanguage, studioId } from '../lib/seo';
 
 interface Props {
   project: CollectionEntry<'work'>;
@@ -24,9 +25,36 @@ const facts = [
   { label: t.work.facts.area, value: area },
   { label: t.work.facts.scope, value: scope.join(', ') },
 ].filter((f) => f.value);
+
+const path = `/work/${slugOf(project)}`;
+const url = new URL(localizePath(path, lang), Astro.site).href;
+const work = {
+  '@type': 'CreativeWork',
+  '@id': `${url}#project`,
+  url,
+  name: title,
+  description: summary,
+  genre: t.work.categories[category],
+  keywords: scope.join(', '),
+  dateCreated: String(year),
+  locationCreated: { '@type': 'Place', name: location },
+  image: [cover, ...gallery].filter(Boolean),
+  creator: { '@id': studioId(Astro.site!) },
+  inLanguage: inLanguage(lang),
+};
 ---
 
-<Base title={title} description={summary}>
+<Base
+  title={`${title} · ${t.work.categories[category]}, ${location} · indesain`}
+  description={summary}
+  image={cover}
+  pageType="ItemPage"
+  breadcrumbs={[
+    { name: t.nav.work, path: '/work' },
+    { name: title, path },
+  ]}
+  schema={[work]}
+  mainEntity={work['@id']}>
   <section class="cover dark">
     <Media src={cover} alt={title} label="Project cover · 16:9" eager parallax class="cover-media" />
     <div class="cover-content wrap">

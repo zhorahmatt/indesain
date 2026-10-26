@@ -6,6 +6,7 @@ import Intro from '../components/Intro.astro';
 import Process from '../components/Process.astro';
 import Services from '../components/Services.astro';
 import { getLang, useTranslations } from '../i18n/utils';
+import { studioId } from '../lib/seo';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
@@ -19,7 +20,12 @@ const photos = [
 ];
 ---
 
-<Base title={t.studio.label}>
+<Base
+  title={t.seo.studio.title}
+  description={t.seo.studio.description}
+  pageType="AboutPage"
+  breadcrumbs={[{ name: t.nav.studio, path: '/studio' }]}
+  mainEntity={studioId(Astro.site!)}>
   <PageHeader label={t.studio.label} title={t.studio.title} />
 
   <div class="wrap" data-reveal="media">

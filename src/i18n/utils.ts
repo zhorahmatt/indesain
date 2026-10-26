@@ -15,16 +15,22 @@ export function useTranslations(lang: Lang) {
   return ui[lang];
 }
 
-/** "/work" → "/work" for Indonesian, "/en/work" for English. */
+/** "/work" → "/work/" for Indonesian, "/en/work/" for English. Always ends in a slash, matching the built pages. */
 export function localizePath(path: string, lang: Lang) {
-  if (lang === defaultLang) return path;
-  return path === '/' ? `/${lang}/` : `/${lang}${path}`;
+  const clean = path.replace(/\/+$/, '');
+  return `${lang === defaultLang ? '' : `/${lang}`}${clean}/`;
 }
 
 /** Removes the language prefix so the same page can be linked in another language. */
 export function unlocalizePath(pathname: string) {
   const stripped = pathname.replace(new RegExp(`^/(${langs.join('|')})(?=/|$)`), '');
   return stripped || '/';
+}
+
+/** The current page's path without language prefix; the 404 page points to the homepage instead of itself. */
+export function pagePath(pathname: string) {
+  const path = unlocalizePath(pathname);
+  return /^\/404(\.html)?\/?$/.test(path) ? '/' : path;
 }
 
 /** Content entries live in "<lang>/<slug>.md"; the slug is shared by both languages. */
@@ -64,4 +70,21 @@ export function openingHours(lang: Lang) {
     time: `${time(h.opens)}–${time(h.closes)}`,
   }));
   return [...rows, { days: t.days.Su, time: t.closed }];
+}
+
+/** FAQ entries with their {tokens} filled from the site data, shared by the FAQ section and its structured data. */
+export function faqItems(lang: Lang) {
+  const t = ui[lang];
+  const values: Record<string, string> = {
+    address: site.address.join(', '),
+    hours: openingHours(lang)
+      .map((row) => `${row.days} ${row.time}`)
+      .join(', '),
+    founded: String(site.founded),
+    cities: String(site.cities),
+    steps: t.process.steps.map((step) => step.title.toLowerCase()).join(', '),
+    phone: site.phone,
+    email: site.email,
+  };
+  return t.faq.items.map(({ q, a }) => ({ q, a: a.replace(/\{(\w+)\}/g, (_, key) => values[key]) }));
 }

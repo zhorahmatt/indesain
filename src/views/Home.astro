@@ -8,9 +8,15 @@ import Showreel from '../components/Showreel.astro';
 import Services from '../components/Services.astro';
 import Testimonials from '../components/Testimonials.astro';
 import JournalRow from '../components/JournalRow.astro';
+import Faq from '../components/Faq.astro';
+import { faqItems, getLang, localizePath } from '../i18n/utils';
+import { faqNode } from '../lib/seo';
+
+const lang = getLang(Astro.currentLocale);
+const faq = faqNode(new URL(localizePath('/', lang), Astro.site).href, faqItems(lang));
 ---
 
-<Base>
+<Base schema={[faq]}>
   <Hero />
   <Intro />
   <WorkGrid />
@@ -18,5 +24,6 @@ import JournalRow from '../components/JournalRow.astro';
   <Showreel src="https://videos.pexels.com/video-files/17211936/17211936-hd_1920_1080_30fps.mp4" />
   <Services />
   <Testimonials />
+  <Faq />
   <JournalRow />
 </Base>

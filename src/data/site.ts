@@ -6,6 +6,7 @@ export const site = {
   name: 'indesain',
   legalName: 'INDESAIN ARSITEK',
   founded: 2011,
+  cities: 10,
   city: 'Makassar',
   coordinates: '5.18° S, 119.45° E',
   geo: { lat: -5.1815142, lng: 119.4478294 },
@@ -32,6 +33,9 @@ export const site = {
     { days: ['Th', 'Fr', 'Sa'], opens: '07:00', closes: '21:00' },
   ],
   social: [{ label: 'Instagram', href: 'https://www.instagram.com/indesain_makassar/' }],
+  // Default share image (Unsplash stand-in, cropped to 1200×630 by shareImage in src/lib/seo.ts).
+  shareImage: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2400&q=80',
+  logo: '/favicon.svg',
 };
 
 // Years in practice counts up from the founding year at build time (2026 → 15).
@@ -39,7 +43,7 @@ export const stats = [
   { value: new Date().getFullYear() - site.founded, suffix: '' },
   { value: 80, suffix: '+' },
   { value: 70, suffix: '+' },
-  { value: 10, suffix: '' },
+  { value: site.cities, suffix: '' },
 ];
 
 export const navPaths = ['/work', '/studio', '/journal', '/contact'] as const;

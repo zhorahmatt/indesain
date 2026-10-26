@@ -2,14 +2,27 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import JournalCard from '../components/JournalCard.astro';
-import { getLang, getPosts, useTranslations } from '../i18n/utils';
+import { getLang, getPosts, localizePath, slugOf, useTranslations } from '../i18n/utils';
+import { itemListNode } from '../lib/seo';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 const posts = await getPosts(lang);
+
+const url = new URL(localizePath('/journal', lang), Astro.site).href;
+const list = itemListNode(
+  url,
+  posts.map((p) => ({ name: p.data.title, url: new URL(localizePath(`/journal/${slugOf(p)}`, lang), Astro.site).href })),
+);
 ---
 
-<Base title={t.journal.pageLabel}>
+<Base
+  title={t.seo.journal.title}
+  description={t.seo.journal.description}
+  pageType="CollectionPage"
+  breadcrumbs={[{ name: t.nav.journal, path: '/journal' }]}
+  schema={[list]}
+  mainEntity={list['@id'] as string}>
   <PageHeader label={t.journal.pageLabel} title={t.journal.pageTitle} />
   <section class="posts wrap grid" data-reveal="fade" data-stagger>
     {posts.map((post) => <JournalCard post={post} class="post" />)}

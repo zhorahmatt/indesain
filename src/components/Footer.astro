@@ -1,12 +1,12 @@
 ---
 import { navPaths, site } from '../data/site';
-import { getLang, langs, localizePath, unlocalizePath, useTranslations } from '../i18n/utils';
+import { getLang, langs, localizePath, pagePath, useTranslations } from '../i18n/utils';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 
 const year = new Date().getFullYear();
-const path = unlocalizePath(Astro.url.pathname);
+const path = pagePath(Astro.url.pathname);
 const switcher = langs.map((code) => ({ code, href: localizePath(path, code), name: useTranslations(code).langName }));
 const columns = [
   {
