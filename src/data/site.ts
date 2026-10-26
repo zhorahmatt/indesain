@@ -4,6 +4,8 @@
 
 export const site = {
   name: 'indesain',
+  // How the name is set in the logo lockup (header and footer).
+  wordmark: 'Indesain',
   legalName: 'INDESAIN ARSITEK',
   founded: 2011,
   cities: 10,
