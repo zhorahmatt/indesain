@@ -151,9 +151,12 @@ const graph = {
     <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
 
     <meta name="theme-color" content="#141413" />
+    <!-- Google shows the favicon in search results; it wants a square icon in multiples of 48px. -->
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
-    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(graph)} />
     <script is:inline>document.documentElement.classList.add('js');</script>

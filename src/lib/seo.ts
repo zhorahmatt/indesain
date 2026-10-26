@@ -34,7 +34,7 @@ export function studioNode(lang: Lang, base: URL): Node {
     description: t.description,
     slogan: t.hero.services,
     url: new URL(localizePath('/', lang), base).href,
-    logo: new URL(site.logo, base).href,
+    logo: { '@type': 'ImageObject', '@id': new URL('/#logo', base).href, url: new URL(site.logo, base).href, width: 512, height: 512, caption: site.name },
     image: shareImage(undefined, base),
     foundingDate: String(site.founded),
     telephone: site.phoneHref.replace('tel:', ''),
