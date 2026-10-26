@@ -25,7 +25,7 @@ const columns = [
   <div class="top">
     <div class="cols wrap grid small">
       <div class="brand">
-        <p class="serif h3">{site.name}</p>
+        <p class="lockup h3"><img src={site.logoMark} alt="" width="106" height="128" />{site.name}</p>
         <p>{t.tagline}</p>
       </div>
       {
@@ -77,7 +77,7 @@ const columns = [
   </div>
 
   <div class="giant wrap" aria-hidden="true">
-    <p class="serif giant-word" data-fit>{site.name}</p>
+    <p class="giant-word" data-fit><img src="/brand/logo-mark-lg.webp" alt="" width="664" height="800" loading="lazy" />{site.name}</p>
   </div>
 </footer>
 
@@ -107,6 +107,26 @@ const columns = [
 
   .cols .brand {
     grid-column: 1 / span 6;
+  }
+
+  /* Logo mark + wordmark, as in the header. */
+  .lockup,
+  .giant-word {
+    font-family: var(--brand);
+    font-weight: 600;
+  }
+
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    letter-spacing: -0.02em;
+  }
+
+  .lockup img,
+  .giant-word img {
+    width: auto;
+    height: 1.05em;
   }
 
   address {
@@ -149,10 +169,16 @@ const columns = [
   }
 
   .giant-word {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.06em;
     white-space: nowrap;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.05em;
     font-size: 26vw;
+  }
+
+  .giant-word img {
+    height: 0.82em;
   }
 
   @media (max-width: 1199px) {
