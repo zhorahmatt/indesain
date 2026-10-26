@@ -102,30 +102,30 @@ const switcher = langs.map((code) => ({
     height: 84px;
   }
 
+  /* Mark, name and tagline read as one lockup: the mark spans both lines of text. */
   .brand-mark img {
     width: auto;
-    height: 42px;
+    height: 48px;
   }
 
   .wordmark {
-    /* Leaves room for the mark (42px tall, 106:128) plus a gap. */
-    margin-left: 46px;
+    /* Leaves room for the mark (48px tall, 106:128) plus a gap. */
+    margin-left: 50px;
     display: grid;
-    gap: 3px;
   }
 
   .wordmark-name {
     font-family: var(--brand);
     font-size: 32px;
     font-weight: 600;
-    line-height: 0.9;
+    line-height: 0.95;
     letter-spacing: -0.02em;
   }
 
   .wordmark-tag {
     /* Same size as the footer's small text. */
     font-size: var(--fs-small);
-    line-height: 1.2;
+    line-height: 1.15;
     letter-spacing: 0.01em;
   }
 
@@ -195,9 +195,17 @@ const switcher = langs.map((code) => ({
       display: block;
     }
 
-    /* Wrap the tagline on phones so it clears the menu button. */
+    /* Wrap the tagline on phones so it clears the menu button; the mark grows to span all three lines. */
     .wordmark-tag {
       max-width: 13em;
+    }
+
+    .brand-mark img {
+      height: 60px;
+    }
+
+    .wordmark {
+      margin-left: 60px;
     }
   }
 </style>
