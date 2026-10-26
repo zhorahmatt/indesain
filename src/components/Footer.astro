@@ -24,9 +24,6 @@ const columns = [
 <footer class="footer dark">
   <div class="top">
     <div class="cols wrap grid small">
-      <div class="brand">
-        <p>{t.tagline}</p>
-      </div>
       {
         columns.map((col) => (
           <div>
@@ -104,8 +101,9 @@ const columns = [
     grid-column: span 2;
   }
 
-  .cols .brand {
-    grid-column: 1 / span 6;
+  /* Right half on desktop; the header above already shows the name and tagline. */
+  .cols > div:first-child {
+    grid-column-start: 7;
   }
 
   /* Logo mark + wordmark. */
@@ -172,8 +170,8 @@ const columns = [
       grid-column: span 3;
     }
 
-    .cols .brand {
-      grid-column: 1 / -1;
+    .cols > div:first-child {
+      grid-column-start: auto;
     }
   }
 
