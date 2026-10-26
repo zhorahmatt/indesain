@@ -1,7 +1,7 @@
 ---
 import Media from './Media.astro';
 import { site } from '../data/site';
-import { getLang, useTranslations } from '../i18n/utils';
+import { getLang, useTranslations, whatsappLink } from '../i18n/utils';
 
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
@@ -21,6 +21,9 @@ const t = useTranslations(lang);
       {t.hero.lines.map((line, i) => (i ? [' ', <br />, line] : line))}
     </h1>
     <div class="hero-meta small" data-reveal="fade" data-delay="0.9">
+      <a href={whatsappLink(lang)} class="hero-cta" target="_blank" rel="noopener" aria-label={t.hero.ctaLabel}>
+        {t.hero.cta}
+      </a>
       <p>{t.hero.services} {t.hero.since} {site.founded}</p>
       <p class="mute">{site.city} · {site.coordinates}</p>
     </div>
@@ -72,7 +75,23 @@ const t = useTranslations(lang);
     grid-column: 10 / span 3;
     align-self: end;
     justify-self: end;
+    display: grid;
+    justify-items: end;
     text-align: right;
+  }
+
+  .hero-cta {
+    margin-bottom: 20px;
+    padding: 14px 24px;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: opacity 0.3s;
+  }
+
+  .hero-cta:hover {
+    opacity: 0.85;
   }
 
   @media (max-width: 809px) {
@@ -81,6 +100,16 @@ const t = useTranslations(lang);
       grid-column: 1 / -1;
       justify-self: start;
       text-align: left;
+    }
+
+    .hero-meta {
+      justify-self: stretch;
+      justify-items: start;
+    }
+
+    .hero-cta {
+      justify-self: stretch;
+      text-align: center;
     }
   }
 </style>

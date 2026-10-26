@@ -44,6 +44,9 @@ const id = {
     services: 'Arsitektur · Interior · Konstruksi · Renovasi',
     since: 'sejak',
     videoAlt: 'Video interior rumah',
+    cta: 'Konsultasi sekarang →',
+    ctaLabel: 'Konsultasi lewat WhatsApp',
+    whatsappMessage: 'Halo Indesain, saya ingin konsultasi soal proyek saya.',
   },
 
   intro: {
@@ -266,6 +269,9 @@ const en: typeof id = {
     services: 'Architecture · Interiors · Construction · Renovation',
     since: 'since',
     videoAlt: 'Interior video of a home',
+    cta: 'Book a consultation →',
+    ctaLabel: 'Book a consultation on WhatsApp',
+    whatsappMessage: "Hi Indesain, I'd like to talk about my project.",
   },
 
   intro: {

@@ -16,6 +16,7 @@ export const site = {
   email: 'hello@indesain.id',
   phone: '0852-4266-2257',
   phoneHref: 'tel:+6285242662257',
+  whatsapp: '6285242662257',
   address: ['Jl. Karaeng Bontotangnga VI No. 7', 'Karunrung, Kec. Rappocini', 'Makassar, Sulawesi Selatan 90221'],
   postal: {
     street: 'Jl. Karaeng Bontotangnga VI No. 7, Karunrung, Kec. Rappocini',

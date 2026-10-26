@@ -72,6 +72,11 @@ export function openingHours(lang: Lang) {
   return [...rows, { days: t.days.Su, time: t.closed }];
 }
 
+/** WhatsApp chat link with a ready-to-send greeting in the page language. */
+export function whatsappLink(lang: Lang) {
+  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(ui[lang].hero.whatsappMessage)}`;
+}
+
 /** FAQ entries with their {tokens} filled from the site data, shared by the FAQ section and its structured data. */
 export function faqItems(lang: Lang) {
   const t = ui[lang];

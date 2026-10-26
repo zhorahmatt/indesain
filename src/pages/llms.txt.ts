@@ -56,6 +56,7 @@ export const GET: APIRoute = async ({ site: base }) => {
       .map((row) => `${row.days} ${row.time}`)
       .join(', ')}`,
     `- Phone: ${site.phone}`,
+    `- WhatsApp: https://wa.me/${site.whatsapp}`,
     `- Email: ${site.email}`,
     `- Map: ${site.maps.link}`,
     ...site.social.map((s) => `- ${s.label}: ${s.href}`),
