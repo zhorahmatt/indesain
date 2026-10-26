@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // The live domain. Canonical URLs, hreflang, the sitemap and structured data are all built from it,
-  // so set SITE_URL (e.g. https://indesain.id) when deploying.
-  site: process.env.SITE_URL ?? 'https://indesain.example',
+  // The live domain. Canonical URLs, hreflang, the sitemap and structured data are all built from it.
+  // SITE_URL overrides it, e.g. for a staging deploy.
+  site: process.env.SITE_URL ?? 'https://indesain.web.id',
   // Pages build to folders ("/work/index.html"), so every URL ends in a slash; links and canonicals match.
   trailingSlash: 'always',
   i18n: {
