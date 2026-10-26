@@ -25,7 +25,6 @@ const columns = [
   <div class="top">
     <div class="cols wrap grid small">
       <div class="brand">
-        <p class="lockup h3"><img src={site.logoMark} alt="" width="106" height="128" />{site.name}</p>
         <p>{t.tagline}</p>
       </div>
       {
@@ -109,24 +108,10 @@ const columns = [
     grid-column: 1 / span 6;
   }
 
-  /* Logo mark + wordmark, as in the header. */
-  .lockup,
+  /* Logo mark + wordmark. */
   .giant-word {
     font-family: var(--brand);
     font-weight: 600;
-  }
-
-  .lockup {
-    display: flex;
-    align-items: center;
-    gap: 0.3em;
-    letter-spacing: -0.02em;
-  }
-
-  .lockup img,
-  .giant-word img {
-    width: auto;
-    height: 1.05em;
   }
 
   address {
@@ -178,6 +163,7 @@ const columns = [
   }
 
   .giant-word img {
+    width: auto;
     height: 0.82em;
   }
 
