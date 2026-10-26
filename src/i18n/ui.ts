@@ -3,7 +3,7 @@
 
 const id = {
   langName: 'Bahasa Indonesia',
-  tagline: 'Desain Interior & Arsitektur',
+  tagline: 'Desain Interior, Arsitektur dan Kontraktor',
   description:
     'indesain adalah studio arsitektur dan interior di Makassar yang juga menangani konstruksi dan renovasi. Kami mengerjakan rumah, kantor, hotel, dan kafe, dari desain sampai serah terima.',
 
@@ -226,7 +226,7 @@ const id = {
 
 const en: typeof id = {
   langName: 'English',
-  tagline: 'Interior Design & Architecture',
+  tagline: 'Interior Design, Architecture & Contractor',
   description:
     'indesain is an architecture and interior studio in Makassar that also handles construction and renovation. We work on homes, offices, hotels and cafés, from design to handover.',
 

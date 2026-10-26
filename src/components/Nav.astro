@@ -27,7 +27,8 @@ const switcher = langs.map((code) => ({
 </a>
 <header class="nav wrap">
   <a href={localizePath('/', lang)} class="wordmark" aria-label={`${site.name} — ${t.nav.home}`}>
-    {site.name}
+    <span class="wordmark-name">{site.name}</span>
+    <span class="wordmark-tag">{t.tagline}</span>
   </a>
   <nav aria-label={t.menu.primary}>
     <ul class="links small">
@@ -109,10 +110,22 @@ const switcher = langs.map((code) => ({
   .wordmark {
     /* Leaves room for the mark (42px tall, 106:128) plus a gap. */
     margin-left: 46px;
+    display: grid;
+    gap: 3px;
+  }
+
+  .wordmark-name {
     font-family: var(--brand);
     font-size: 32px;
     font-weight: 600;
+    line-height: 0.9;
     letter-spacing: -0.02em;
+  }
+
+  .wordmark-tag {
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
   }
 
   nav {
