@@ -35,7 +35,8 @@ export const site = {
   social: [{ label: 'Instagram', href: 'https://www.instagram.com/indesain_makassar/' }],
   // Default share image (Unsplash stand-in, cropped to 1200×630 by shareImage in src/lib/seo.ts).
   shareImage: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2400&q=80',
-  logo: '/favicon.svg',
+  logo: '/brand/logo.png',
+  logoMark: '/brand/logo-mark.png',
 };
 
 // Years in practice counts up from the founding year at build time (2026 → 15).

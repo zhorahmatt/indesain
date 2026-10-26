@@ -18,9 +18,16 @@ const switcher = langs.map((code) => ({
 }));
 ---
 
+<!--
+  The yellow mark sits outside the header: the header uses mix-blend-mode so its text reads on light and dark
+  sections, which would also invert the mark's colour. The wordmark beside it is the real home link.
+-->
+<a href={localizePath('/', lang)} class="brand-mark wrap" aria-hidden="true" tabindex="-1">
+  <img src={site.logoMark} alt="" width="106" height="128" />
+</a>
 <header class="nav wrap">
-  <a href={localizePath('/', lang)} class="wordmark serif" aria-label={`${site.name} — ${t.nav.home}`}>
-    {site.name}<sup>®</sup>
+  <a href={localizePath('/', lang)} class="wordmark" aria-label={`${site.name} — ${t.nav.home}`}>
+    {site.name}
   </a>
   <nav aria-label={t.menu.primary}>
     <ul class="links small">
@@ -84,14 +91,28 @@ const switcher = langs.map((code) => ({
     mix-blend-mode: difference;
   }
 
-  .wordmark {
-    font-size: 22px;
-    letter-spacing: -0.04em;
+  .brand-mark {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 51;
+    display: flex;
+    align-items: center;
+    height: 64px;
   }
 
-  .wordmark sup {
-    font-size: 0.45em;
-    margin-left: 1px;
+  .brand-mark img {
+    width: auto;
+    height: 30px;
+  }
+
+  .wordmark {
+    /* Leaves room for the mark (30px tall, 106:128) plus a gap. */
+    margin-left: 34px;
+    font-family: var(--brand);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
   nav {

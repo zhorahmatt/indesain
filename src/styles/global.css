@@ -1,5 +1,6 @@
 @import '@fontsource/hedvig-letters-serif/400.css';
 @import '@fontsource-variable/geist';
+@import '@fontsource-variable/figtree';
 
 :root {
   --ink: #141413;
@@ -13,6 +14,8 @@
 
   --serif: 'Hedvig Letters Serif', 'Times New Roman', serif;
   --sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Logo wordmark. Proxima Nova is licensed (e.g. Adobe Fonts); Figtree is the free stand-in until it is loaded. */
+  --brand: 'proxima-nova', 'Proxima Nova', 'Figtree Variable', var(--sans);
 
   --gutter: 24px;
   --gap: 24px;

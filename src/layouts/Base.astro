@@ -151,7 +151,9 @@ const graph = {
     <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
 
     <meta name="theme-color" content="#141413" />
-    <link rel="icon" href={site.logo} type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(graph)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
