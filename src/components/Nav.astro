@@ -102,16 +102,18 @@ const switcher = langs.map((code) => ({
     height: 84px;
   }
 
-  /* Mark, name and tagline read as one lockup: the mark spans both lines of text. */
+  /* Mark and name as one lockup; the mark matches the name's height. */
   .brand-mark img {
     width: auto;
-    height: 48px;
+    height: 40px;
+    transition: height 0.5s var(--ease-out);
   }
 
   .wordmark {
-    /* Leaves room for the mark (48px tall, 106:128) plus a gap. */
-    margin-left: 50px;
+    /* Leaves room for the mark (40px tall, 106:128) plus a gap. */
+    margin-left: 42px;
     display: grid;
+    transition: margin-left 0.5s var(--ease-out);
   }
 
   .wordmark-name {
@@ -123,10 +125,30 @@ const switcher = langs.map((code) => ({
   }
 
   .wordmark-tag {
-    /* Same size as the footer's small text. */
+    /* Same size as the footer's small text. Hidden until the footer is in view (see the script below). */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
     font-size: var(--fs-small);
     line-height: 1.15;
     letter-spacing: 0.01em;
+    transition:
+      max-height 0.5s var(--ease-out),
+      opacity 0.4s;
+  }
+
+  /* Over the footer the tagline joins the lockup and the mark grows to span both lines. */
+  :global(.at-footer) .wordmark-tag {
+    max-height: 3.5em;
+    opacity: 1;
+  }
+
+  :global(.at-footer) .brand-mark img {
+    height: 48px;
+  }
+
+  :global(.at-footer) .wordmark {
+    margin-left: 50px;
   }
 
   nav {
@@ -200,17 +222,27 @@ const switcher = langs.map((code) => ({
       max-width: 13em;
     }
 
-    .brand-mark img {
+    :global(.at-footer) .brand-mark img {
       height: 60px;
     }
 
-    .wordmark {
+    :global(.at-footer) .wordmark {
       margin-left: 60px;
     }
   }
 </style>
 
 <script>
+  // Show the tagline once the page above has scrolled up past 60% of the screen, uncovering the footer.
+  const page = document.querySelector('.page');
+  if (page) {
+    const update = () =>
+      document.documentElement.classList.toggle('at-footer', page.getBoundingClientRect().bottom < innerHeight * 0.6);
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const menu = document.getElementById('mobile-menu');
 
